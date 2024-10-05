@@ -64,6 +64,9 @@ https://fonts.google.com/specimen/Lilita+One?query=Lilita+One
 #Paleta de Cores
 https://colorhunt.co/palette/c96868fadfa1fff4ea7eacb5
 
+#Device Android (Emulador)
+Pixel 5 - API 26 - Oreo 8.0
+
 
 
 
