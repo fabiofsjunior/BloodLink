@@ -37,3 +37,35 @@ VIEW PRINCIPAL - A gente chama todas  as outras telas -
 5. Build/Deploy [Todos]:
 - Disponibilizar App em algum link;
 - GitHub com o projeto; (https://github.com/fabiofsjunior/BloodLink)
+
+SEMANA 05/10 a 11/10
+
+Tarefas:
+1. Modelagem do banco; @Joana Karina 
+2. Definição Paleta de Cores; @Fábio
+3. Disponibilização de Assets (ícones, imagens, cores e fontes) @Fábio
+4. Criação da Branch para cada funcionalidade; @Todos
+5. Modelagem UML (com os requisitos de cada View); @Todos
+
+#Tutorial GIT/GITHUB: 
+(para criação das branchs e acompanhar a progressão do projeto)
+https://www.youtube.com/watch?v=Zwv9qRyVeU4
+
+#Tutorial UML - Casos de Uso: 
+(pra planejar o que vai precisar fazer nas telas que cada um precisa desempenhar)
+https://www.youtube.com/watch?v=ab6eDdwS3rA
+
+#App Grátis para UML
+https://app.diagrams.net/
+
+#Fonte
+https://fonts.google.com/specimen/Lilita+One?query=Lilita+One
+
+#Paleta de Cores
+https://colorhunt.co/palette/c96868fadfa1fff4ea7eacb5
+
+
+
+
+
+
