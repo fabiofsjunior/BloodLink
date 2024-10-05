@@ -38,6 +38,7 @@ VIEW PRINCIPAL - A gente chama todas  as outras telas -
 - Disponibilizar App em algum link;
 - GitHub com o projeto; (https://github.com/fabiofsjunior/BloodLink)
 
+--------------------------------------------------------------------------------------
 SEMANA 05/10 a 11/10
 
 Tarefas:
@@ -67,6 +68,8 @@ https://colorhunt.co/palette/c96868fadfa1fff4ea7eacb5
 #Device Android (Emulador)
 Pixel 5 - API 26 - Oreo 8.0
 
+--------------------------------------------------------------------------------------
+SEMANA 11/10 a 20/10
 
 
 
