@@ -1,21 +1,33 @@
 package com.example.bloodlink.activitys
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
+import android.util.Log
+import android.view.View
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.bloodlink.R
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity(), View.OnClickListener {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_login)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+
+        var buttonLogin: Button = findViewById(R.id.botaoLogin)
+        var buttonCadastrar: Button = findViewById(R.id.botaoCadastrar)
+
+        buttonLogin.setOnClickListener(this)
+        buttonCadastrar.setOnClickListener(this)
+    }
+
+    override fun onClick(view: View) {
+        when (view.id) {
+            R.id.botaoLogin -> {
+                Log.d("LoginActivity", "Botão de login clicado") // Exibe no Logcat
+            }
+            R.id.botaoCadastrar -> {
+                Log.d("LoginActivity", "Botão de cadastro clicado") // Exibe no Logcat
+            }
         }
     }
 }

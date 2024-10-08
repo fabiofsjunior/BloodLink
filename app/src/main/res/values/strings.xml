@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">BloodLink</string>
+    <string name="default_web_client_id">626561387995-qh7bbuovofnqasl0qqru9o7jdsld3ksl.apps.googleusercontent.com</string>
 </resources>

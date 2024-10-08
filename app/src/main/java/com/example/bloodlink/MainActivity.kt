@@ -21,14 +21,13 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-
 //       Chama a tela de Login
-//       val login = Intent(this, LoginActivity::class.java)
-//        startActivity(login)
+        val login = Intent(this, LoginActivity::class.java)
+        startActivity(login)
 
 
 //       Chama a tela de Cadastro
 //       val cadastro = Intent(this, CadastroActivity::class.java)
 //        startActivity(cadastro)
-}
+    }
 }
