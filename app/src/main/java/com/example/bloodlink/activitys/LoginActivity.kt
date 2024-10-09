@@ -17,16 +17,22 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
         var buttonLogin: Button = findViewById(R.id.botaoLogin)
         var buttonCadastrar: Button = findViewById(R.id.botaoCadastrar)
-        var tapToLogin: ImageView = findViewById(R.id.botaoVoltar)
+        var botaoVoltar: ImageView = findViewById(R.id.botaoVoltar)
 
         buttonLogin.setOnClickListener(this)
         buttonCadastrar.setOnClickListener(this)
-        tapToLogin.setOnClickListener(this)
+        botaoVoltar.setOnClickListener(this)
 
     }
 
     override fun onClick(view: View) {
         when (view.id) {
+
+            R.id.botaoVoltar -> {
+                val homeMain = Intent(this, MainActivity::class.java)
+                startActivity(homeMain)
+            }
+
             R.id.botaoLogin -> {
             }
 
@@ -35,10 +41,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 startActivity(cadastro)
             }
 
-            R.id.botaoVoltar -> {
-                val homeMain = Intent(this, MainActivity::class.java)
-                startActivity(homeMain)
-            }
+
         }
     }
 }

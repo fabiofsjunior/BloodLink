@@ -4,7 +4,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFF4EA"
+    android:background="#7EACB5"
     android:gravity="center"
     android:orientation="vertical"
     tools:context=".activitys.LoginActivity">
@@ -28,24 +28,27 @@
         android:textSize="36sp" />
 
     <EditText
-        android:id="@+id/emailUser"
+        android:id="@+id/emailUserLogin"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:hint="EMAIL"
         android:textSize="24sp"
         android:padding="10dp"
+        android:background="@color/white"
         android:fontFamily="@font/lilita_one"
         android:inputType="textEmailAddress"
         android:textAlignment="center" />
 
     <EditText
-        android:id="@+id/senhaUser"
+        android:id="@+id/senhaUserLogin"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:hint="SENHA"
+        android:layout_marginTop="8dp"
         android:textSize="24sp"
         android:padding="10dp"
+        android:background="@color/white"
         android:fontFamily="@font/lilita_one"
         android:inputType="textPassword"
         android:textAlignment="center" />
@@ -57,7 +60,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="150dp"
         android:textColor="@color/black"
-        android:backgroundTint="#7EACB5"
+        android:backgroundTint="#FADFA1"
         android:text="Login"
         android:textSize="24sp"
         android:fontFamily="@font/lilita_one"
@@ -81,10 +84,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:textColor="@color/black"
-        android:backgroundTint="#FADFA1"
-        android:textSize="24sp"
+        android:backgroundTint="#FFFFFF"
+        android:textSize="18sp"
         android:fontFamily="@font/lilita_one"
-        android:text="Google"
+        android:text="Login com Google"
         android:onClick="onClick" />
 
 </LinearLayout>

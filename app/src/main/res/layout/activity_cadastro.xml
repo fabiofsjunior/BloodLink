@@ -19,25 +19,41 @@
         android:id="@+id/tvTitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="25dp"
         android:fontFamily="@font/lilita_one"
         android:text="Cadastro de Usuário"
         android:textColor="@color/black"
+        android:paddingBottom="50dp"
         android:textSize="34sp" />
 
+
     <EditText
-        android:id="@+id/etUsername"
+        android:id="@+id/nomeUsuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="75dp"
+        android:layout_marginTop="16dp"
         android:background="#FFF4EA"
         android:fontFamily="@font/lilita_one"
-        android:hint="Username"
+        android:hint="Nome Completo"
+        android:inputType="text"
         android:padding="5dp"
         android:textSize="24sp" />
 
     <EditText
-        android:id="@+id/etPassword"
+        android:id="@+id/emailUsuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="#FFF4EA"
+        android:fontFamily="@font/lilita_one"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:padding="5dp"
+        android:textSize="24sp" />
+
+
+    <EditText
+        android:id="@+id/senhaUsuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -72,44 +88,33 @@
         android:textSize="24sp" />
 
     <EditText
-        android:id="@+id/etEmail"
+        android:id="@+id/celularUsuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="#FFF4EA"
         android:fontFamily="@font/lilita_one"
-        android:hint="Email"
-        android:inputType="textEmailAddress"
-        android:padding="5dp"
-        android:textSize="24sp" />
-
-    <EditText
-        android:id="@+id/etCelular"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="#FFF4EA"
-        android:fontFamily="@font/lilita_one"
-        android:hint="Celular"
+        android:hint="Cel 81 9 9999-9999"
         android:inputType="phone"
         android:padding="5dp"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:maxLength="11"/>
 
-    <EditText
-        android:id="@+id/etEndereco"
+    <Spinner
+        android:id="@+id/spinnerCidadeUf"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="#FFF4EA"
+        android:backgroundTint="#FFF4EA"
         android:fontFamily="@font/lilita_one"
-        android:hint="Endereço"
-        android:inputType="textPostalAddress"
         android:padding="5dp"
         android:textSize="24sp" />
 
+
     <Button
-        android:id="@+id/btnCadastrar"
-        android:layout_width="wrap_content"
+        android:id="@+id/botaoCadastro"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
@@ -126,9 +131,9 @@
         android:layout_gravity="center"
         android:textColor="@color/black"
         android:backgroundTint="#FFFFFF"
-        android:textSize="24sp"
+        android:textSize="20sp"
         android:fontFamily="@font/lilita_one"
-        android:text="Google"
+        android:text="Login com Google"
         android:onClick="onClick" />
 
 </LinearLayout>
