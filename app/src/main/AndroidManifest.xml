@@ -13,6 +13,18 @@
         android:theme="@style/Theme.BloodLink"
         tools:targetApi="31">
         <activity
+            android:name=".activitys.LocalDoacaoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activitys.AgendamentoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activitys.ReceptoresActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activitys.UsuarioActivity"
+            android:exported="false" />
+        <activity
             android:name=".activitys.CadastroActivity"
             android:exported="false" />
         <activity

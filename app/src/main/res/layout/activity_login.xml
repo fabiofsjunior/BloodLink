@@ -9,12 +9,21 @@
     android:orientation="vertical"
     tools:context=".activitys.LoginActivity">
 
+    <ImageButton
+        android:id="@+id/botaoVoltar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:background="@null"
+        android:src="@drawable/icone_voltar" />
+
     <TextView
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
         android:text="Login"
+        android:layout_marginTop="50dp"
         android:fontFamily="@font/lilita_one"
         android:textSize="36sp" />
 
@@ -22,7 +31,7 @@
         android:id="@+id/emailUser"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="100dp"
         android:hint="EMAIL"
         android:textSize="24sp"
         android:padding="10dp"
@@ -64,6 +73,18 @@
         android:textSize="24sp"
         android:fontFamily="@font/lilita_one"
         android:text="Cadastre-se"
+        android:onClick="onClick" />
+
+    <Button
+        android:id="@+id/botaoSignInGoogle"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="@color/black"
+        android:backgroundTint="#FADFA1"
+        android:textSize="24sp"
+        android:fontFamily="@font/lilita_one"
+        android:text="Google"
         android:onClick="onClick" />
 
 </LinearLayout>

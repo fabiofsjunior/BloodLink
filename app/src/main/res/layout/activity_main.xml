@@ -4,23 +4,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#C96868"
-    android:orientation="vertical"
-    android:gravity="center"> <!-- Adicionado para centralizar os itens -->
+    android:gravity="center"
+    android:orientation="vertical"> <!-- Adicionado para centralizar os itens -->
 
     <TextView
         android:id="@+id/btnSignGoogle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:fontFamily="@font/lilita_one"
         android:text="BloodLink"
         android:textColor="#ffffff"
-        android:textSize="32sp"
-        android:layout_marginBottom="16dp" /> <!-- Margem para espaço entre os TextViews -->
+        android:textSize="32sp" /> <!-- Margem para espaço entre os TextViews -->
 
     <TextView
         android:id="@+id/tapToLogin"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:fontFamily="@font/lilita_one"
         android:onClick="onClick"
         android:text="Aperte aqui para entrar!"

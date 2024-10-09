@@ -2,112 +2,133 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
     android:background="#FADFA1"
+    android:gravity="center"
+    android:orientation="vertical"
     android:padding="16dp">
+
+    <ImageButton
+        android:id="@+id/botaoVoltar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:background="@null"
+        android:src="@drawable/icone_voltar" />
 
     <TextView
         android:id="@+id/tvTitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cadastro de Usuário"
-        android:textSize="34sp"
+        android:layout_marginTop="50dp"
         android:fontFamily="@font/lilita_one"
+        android:text="Cadastro de Usuário"
         android:textColor="@color/black"
-        android:layout_marginTop="50dp"/>
+        android:textSize="34sp" />
 
     <EditText
         android:id="@+id/etUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Username"
-        android:textSize="24sp"
-        android:fontFamily="@font/lilita_one"
+        android:layout_marginTop="75dp"
         android:background="#FFF4EA"
+        android:fontFamily="@font/lilita_one"
+        android:hint="Username"
         android:padding="5dp"
-        android:layout_marginTop="75dp"/>
+        android:textSize="24sp" />
 
     <EditText
         android:id="@+id/etPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Password"
-        android:textSize="24sp"
-        android:fontFamily="@font/lilita_one"
+        android:layout_marginTop="16dp"
         android:background="#FFF4EA"
-        android:padding="5dp"
+        android:fontFamily="@font/lilita_one"
+        android:hint="Password"
         android:inputType="textPassword"
-        android:layout_marginTop="16dp"/>
+        android:padding="5dp"
+        android:textSize="24sp" />
 
     <Spinner
         android:id="@+id/spinnerTipoSangue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="#FFF4EA"
+        android:backgroundTint="#FFF4EA"
         android:fontFamily="@font/lilita_one"
         android:padding="5dp"
-        android:textSize="24sp"
-        android:backgroundTint="#FFF4EA"
-        android:background="#FFF4EA"
-        android:layout_marginTop="16dp" />
+        android:textSize="24sp" />
 
     <EditText
         android:id="@+id/etDataNascimento"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="#FFF4EA"
+        android:fontFamily="@font/lilita_one"
         android:hint="dd/mm/yyyy"
         android:inputType="datetime"
-        android:textSize="24sp"
-        android:fontFamily="@font/lilita_one"
-        android:background="#FFF4EA"
         android:padding="5dp"
-        android:layout_marginTop="16dp"/>
+        android:textSize="24sp" />
 
     <EditText
         android:id="@+id/etEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="#FFF4EA"
+        android:fontFamily="@font/lilita_one"
         android:hint="Email"
         android:inputType="textEmailAddress"
-        android:textSize="24sp"
-        android:fontFamily="@font/lilita_one"
-        android:background="#FFF4EA"
         android:padding="5dp"
-        android:layout_marginTop="16dp"/>
+        android:textSize="24sp" />
 
     <EditText
         android:id="@+id/etCelular"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="#FFF4EA"
+        android:fontFamily="@font/lilita_one"
         android:hint="Celular"
         android:inputType="phone"
-        android:textSize="24sp"
-        android:fontFamily="@font/lilita_one"
-        android:background="#FFF4EA"
         android:padding="5dp"
-        android:layout_marginTop="16dp"/>
+        android:textSize="24sp" />
 
     <EditText
         android:id="@+id/etEndereco"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="#FFF4EA"
+        android:fontFamily="@font/lilita_one"
         android:hint="Endereço"
         android:inputType="textPostalAddress"
-        android:textSize="24sp"
-        android:fontFamily="@font/lilita_one"
-        android:background="#FFF4EA"
         android:padding="5dp"
-        android:layout_marginTop="16dp"/>
+        android:textSize="24sp" />
 
     <Button
         android:id="@+id/btnCadastrar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="#C96868"
+        android:fontFamily="@font/lilita_one"
         android:text="Cadastrar"
+        android:textColor="@color/black"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/botaoSignInGoogle"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="@color/black"
+        android:backgroundTint="#FFFFFF"
         android:textSize="24sp"
         android:fontFamily="@font/lilita_one"
-        android:textColor="@color/black"
-        android:backgroundTint="#C96868"
-        android:layout_marginTop="30dp"
-        android:layout_gravity="center"/>
+        android:text="Google"
+        android:onClick="onClick" />
+
 </LinearLayout>
