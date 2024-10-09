@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FADFA1"
+    android:background="#C96868"
     android:gravity="center"
     android:orientation="vertical"
     android:padding="16dp">
@@ -32,7 +32,7 @@
         android:id="@+id/fotoPerfil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="start"
+        android:layout_gravity="center"
         android:background="@null"
         android:src="@drawable/foto_perfil" />
 
@@ -49,9 +49,9 @@
         android:layout_height="wrap_content"
         android:text="Nome: João da Silva"
         android:fontFamily="@font/lilita_one"
+        android:background="#FFF4EA"
         android:textSize="20sp"
-        android:textColor="@color/black"
-        android:paddingBottom="8dp"/>
+        android:textColor="@color/black" />
 
     <TextView
         android:id="@+id/textTipoSanguineo"
@@ -60,8 +60,9 @@
         android:text="Tipo Sanguíneo: O+"
         android:textSize="20sp"
         android:fontFamily="@font/lilita_one"
+        android:background="#FFF4EA"
         android:textColor="@color/black"
-        android:paddingBottom="8dp"/>
+        />
 
     <TextView
         android:id="@+id/textDataNascimento"
@@ -69,9 +70,9 @@
         android:layout_height="wrap_content"
         android:text="Data de Nascimento: 01/01/1990"
         android:fontFamily="@font/lilita_one"
+        android:background="#FFF4EA"
         android:textSize="20sp"
-        android:textColor="@color/black"
-        android:paddingBottom="8dp"/>
+        android:textColor="@color/black" />
 
     <TextView
         android:id="@+id/textCidadeUf"
@@ -79,15 +80,15 @@
         android:layout_height="wrap_content"
         android:text="Cidade: Recife - PE"
         android:fontFamily="@font/lilita_one"
+        android:background="#FFF4EA"
         android:textSize="20sp"
-        android:textColor="@color/black"
-        android:paddingBottom="8dp"/>
+        android:textColor="@color/black" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:background="@android:color/darker_gray"
-        android:layout_marginBottom="5dp"/>
+        android:layout_marginTop="15dp"/>
 
     <Button
         android:id="@+id/botaoEditar"
@@ -96,7 +97,7 @@
         android:layout_gravity="end"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="250dp"
-        android:backgroundTint="#C96868"
+        android:backgroundTint="#FADFA1"
         android:fontFamily="@font/lilita_one"
         android:text="Editar Dados"
         android:textColor="@color/black"
