@@ -1,5 +1,6 @@
 package com.example.bloodlink.activitys
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -27,6 +28,8 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             }
             R.id.botaoCadastrar -> {
                 Log.d("LoginActivity", "Botão de cadastro clicado") // Exibe no Logcat
+                val cadastro = Intent(this, CadastroActivity::class.java)
+                startActivity(cadastro)
             }
         }
     }

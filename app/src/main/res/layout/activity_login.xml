@@ -15,7 +15,8 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:text="Login"
-        android:textSize="32sp" />
+        android:fontFamily="@font/lilita_one"
+        android:textSize="36sp" />
 
     <EditText
         android:id="@+id/emailUser"
@@ -23,6 +24,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="150dp"
         android:hint="EMAIL"
+        android:textSize="24sp"
+        android:padding="10dp"
+        android:fontFamily="@font/lilita_one"
         android:inputType="textEmailAddress"
         android:textAlignment="center" />
 
@@ -31,6 +35,9 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:hint="SENHA"
+        android:textSize="24sp"
+        android:padding="10dp"
+        android:fontFamily="@font/lilita_one"
         android:inputType="textPassword"
         android:textAlignment="center" />
 
@@ -43,7 +50,8 @@
         android:textColor="@color/black"
         android:backgroundTint="#7EACB5"
         android:text="Login"
-        android:textSize="20sp"
+        android:textSize="24sp"
+        android:fontFamily="@font/lilita_one"
         android:onClick="onClick" />
 
     <Button
@@ -53,8 +61,9 @@
         android:layout_gravity="center"
         android:textColor="@color/black"
         android:backgroundTint="#C96868"
+        android:textSize="24sp"
+        android:fontFamily="@font/lilita_one"
         android:text="Cadastre-se"
-        android:textSize="20sp"
         android:onClick="onClick" />
 
 </LinearLayout>
