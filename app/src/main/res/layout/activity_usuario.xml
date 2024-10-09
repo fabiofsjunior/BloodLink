@@ -1,10 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activitys.UsuarioActivity">
+    android:background="#FADFA1"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="16dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageButton
+        android:id="@+id/botaoVoltar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:background="@null"
+        android:src="@drawable/icone_voltar" />
+
+
+    <TextView
+        android:id="@+id/tvTitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/lilita_one"
+        android:text="Carteirinha de Doação de Sangue"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:paddingBottom="10dp"
+        android:textSize="24sp" />
+
+    <ImageButton
+        android:id="@+id/fotoPerfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:background="@null"
+        android:src="@drawable/foto_perfil" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@android:color/darker_gray"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/textNomeUsuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nome: João da Silva"
+        android:fontFamily="@font/lilita_one"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:paddingBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/textTipoSanguineo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tipo Sanguíneo: O+"
+        android:textSize="20sp"
+        android:fontFamily="@font/lilita_one"
+        android:textColor="@color/black"
+        android:paddingBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/textDataNascimento"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Data de Nascimento: 01/01/1990"
+        android:fontFamily="@font/lilita_one"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:paddingBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/textCidadeUf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cidade: Recife - PE"
+        android:fontFamily="@font/lilita_one"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:paddingBottom="8dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@android:color/darker_gray"
+        android:layout_marginBottom="5dp"/>
+
+    <Button
+        android:id="@+id/botaoEditar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="250dp"
+        android:backgroundTint="#C96868"
+        android:fontFamily="@font/lilita_one"
+        android:text="Editar Dados"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+</LinearLayout>
