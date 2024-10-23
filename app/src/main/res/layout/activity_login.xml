@@ -79,7 +79,7 @@
         android:onClick="onClick" />
 
     <Button
-        android:id="@+id/botaoSignInGoogle"
+        android:id="@+id/botaoLoginGoogle"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

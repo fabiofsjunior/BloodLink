@@ -10,15 +10,23 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.Spinner
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.bloodlink.R
+import com.google.firebase.auth.FirebaseAuth
 
 class CadastroActivity : AppCompatActivity(), View.OnClickListener {
+
+    private lateinit var auth: FirebaseAuth
+
     private var tipoSanguineo: String? =
         null  // Variável para armazenar o tipo sanguíneo selecionado
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        auth = FirebaseAuth.getInstance()
+
+
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cadastro)
 
@@ -105,16 +113,15 @@ class CadastroActivity : AppCompatActivity(), View.OnClickListener {
         val cidadeUf = findViewById<Spinner>(R.id.spinnerCidadeUf).toString()
 
 
-
-        if (nomeUsuario.isEmpty() || password.isEmpty() || tipoSanguineo == null || dataNascimento.isEmpty() ||
-            emailUsuario.isEmpty() || celular.isEmpty() || cidadeUf.isEmpty()
-        ) {
-            Toast.makeText(this, "Por favor, preencha todos os campos", Toast.LENGTH_SHORT)
-                .show()
-        } else {
-            // Aqui você pode salvar os dados ou processar o cadastro.
-            Toast.makeText(this, "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show()
-        }
+//        if (nomeUsuario.isEmpty() || password.isEmpty() || tipoSanguineo == null || dataNascimento.isEmpty() ||
+//            emailUsuario.isEmpty() || celular.isEmpty() || cidadeUf.isEmpty()
+//        ) {
+//            Toast.makeText(this, "Por favor, preencha todos os campos", Toast.LENGTH_SHORT)
+//                .show()
+//        } else {
+//            // Aqui você pode salvar os dados ou processar o cadastro.
+//            Toast.makeText(this, "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show()
+//        }
 
 
         var botaoVoltar: ImageView = findViewById(R.id.botaoVoltar)
@@ -136,18 +143,19 @@ class CadastroActivity : AppCompatActivity(), View.OnClickListener {
             }
 
             R.id.botaoCadastrar -> {
-                val cadastro = Intent(this, CadastroActivity::class.java)
-                Log.d("teste","Testando botão Cadastro")
-                startActivity(cadastro)
+                Log.d("teste", "Testando botão Google")
+
             }
 
             R.id.botaoSignInGoogle -> {
-                val cadastro = Intent(this, CadastroActivity::class.java)
-                Log.d("teste","Testando botão Google")
-                startActivity(cadastro)
+                Log.d("teste", "Testando botão Google")
             }
 
         }
+    }
+
+    fun cadastrarEmailSenha() {
+
     }
 
 
