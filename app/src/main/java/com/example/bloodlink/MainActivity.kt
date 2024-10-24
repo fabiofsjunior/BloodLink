@@ -11,12 +11,21 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.bloodlink.activitys.LoginActivity
-import com.google.firebase.auth.FirebaseAuth
+import com.example.bloodlink.classes.Receptor
+import com.google.firebase.database.FirebaseDatabase
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var textView: TextView // Declare o TextView
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        // Inicializar o Firebase Database
+        val database = FirebaseDatabase.getInstance()
+        val myRef = database.getReference("mensagem")
+
+        // Escrever dados no Realtime Database
+        myRef.setValue("Olá, Firebase!")
 
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -79,4 +88,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         val login = Intent(this, LoginActivity::class.java)
         startActivity(login)
     }
+
+
 }

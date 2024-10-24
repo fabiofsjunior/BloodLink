@@ -9,12 +9,12 @@
     android:padding="16dp">
 
     <ImageButton
-        android:id="@+id/botaoVoltar"
+        android:id="@+id/buttonLogout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="start"
+        android:layout_gravity="end"
         android:background="@null"
-        android:src="@drawable/icone_voltar" />
+        android:src="@drawable/icone_logout" />
 
 
     <TextView
@@ -29,7 +29,7 @@
         android:paddingBottom="10dp"
         android:textSize="24sp" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/fotoPerfil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

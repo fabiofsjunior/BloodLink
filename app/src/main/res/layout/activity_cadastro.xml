@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FADFA1"
@@ -7,8 +9,8 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <ImageButton
-        android:id="@+id/botaoVoltar"
+    <ImageView
+        android:id="@+id/btnVoltar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
@@ -19,13 +21,10 @@
         android:id="@+id/tvTitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
         android:fontFamily="@font/lilita_one"
         android:text="Cadastro de Usuário"
         android:textColor="@color/black"
-        android:paddingBottom="50dp"
         android:textSize="34sp" />
-
 
     <EditText
         android:id="@+id/nomeUsuario"
@@ -50,7 +49,6 @@
         android:inputType="textEmailAddress"
         android:padding="5dp"
         android:textSize="24sp" />
-
 
     <EditText
         android:id="@+id/senhaUsuario"
@@ -96,9 +94,9 @@
         android:fontFamily="@font/lilita_one"
         android:hint="Cel 81 9 9999-9999"
         android:inputType="phone"
+        android:maxLength="11"
         android:padding="5dp"
-        android:textSize="24sp"
-        android:maxLength="11"/>
+        android:textSize="24sp" />
 
     <Spinner
         android:id="@+id/spinnerCidadeUf"
@@ -111,6 +109,32 @@
         android:padding="5dp"
         android:textSize="24sp" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+
+        <!-- Campo para upload de imagem -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/lilita_one"
+            android:text="Selecionar Foto do Perfil: "
+            android:layout_gravity="bottom"
+            android:layout_marginRight="10dp"
+            android:textSize="20sp" />
+
+        <ImageButton
+            android:id="@+id/imageBtnFoto"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="8dp"
+            android:background="#E0E0E0"
+            android:scaleType="centerCrop"
+            android:src="@drawable/icone_foto" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/botaoCadastro"
@@ -124,16 +148,16 @@
         android:textColor="@color/black"
         android:textSize="24sp" />
 
-    <Button
-        android:id="@+id/botaoSignInGoogle"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:textColor="@color/black"
-        android:backgroundTint="#FFFFFF"
-        android:textSize="20sp"
-        android:fontFamily="@font/lilita_one"
-        android:text="Login com Google"
-        android:onClick="onClick" />
+    <!--    <Button-->
+    <!--        android:id="@+id/botaoSignInGoogle"-->
+    <!--        android:layout_width="200dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_gravity="center"-->
+    <!--        android:textColor="@color/black"-->
+    <!--        android:backgroundTint="#FFFFFF"-->
+    <!--        android:textSize="20sp"-->
+    <!--        android:fontFamily="@font/lilita_one"-->
+    <!--        android:text="Sign in Google"-->
+    <!--        android:onClick="onClick" />-->
 
 </LinearLayout>

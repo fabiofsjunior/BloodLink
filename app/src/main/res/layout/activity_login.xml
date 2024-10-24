@@ -78,16 +78,16 @@
         android:text="Cadastre-se"
         android:onClick="onClick" />
 
-    <Button
-        android:id="@+id/botaoLoginGoogle"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:textColor="@color/black"
-        android:backgroundTint="#FFFFFF"
-        android:textSize="18sp"
-        android:fontFamily="@font/lilita_one"
-        android:text="Login com Google"
-        android:onClick="onClick" />
+<!--    <Button-->
+<!--        android:id="@+id/botaoLoginGoogle"-->
+<!--        android:layout_width="200dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:backgroundTint="#FFFFFF"-->
+<!--        android:textSize="18sp"-->
+<!--        android:fontFamily="@font/lilita_one"-->
+<!--        android:text="Login Google"-->
+<!--        android:onClick="onClick" />-->
 
 </LinearLayout>

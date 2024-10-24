@@ -26,6 +26,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
         emailEditText = findViewById<EditText>(R.id.emailUserLogin)
         passwordEditText = findViewById<EditText>(R.id.senhaUserLogin)
+
         val buttonLogin: Button = findViewById(R.id.botaoLogin)
         val buttonCadastrar: Button = findViewById(R.id.botaoCadastrar)
         val botaoVoltar: ImageView = findViewById(R.id.botaoVoltar)
@@ -50,16 +51,25 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                     auth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener { task ->
                             if (task.isSuccessful) {
-                                Toast.makeText(this, "Login realizado com sucesso!", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    this,
+                                    "Login realizado com sucesso!",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                                 // Direciona para a UsuariosActivity após o login
                                 startActivity(Intent(this, UsuariosActivity::class.java))
                                 finish()
                             } else {
-                                Toast.makeText(this, "Erro ao fazer login: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    this,
+                                    "Erro ao fazer login: ${task.exception?.message}",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             }
                         }
                 } else {
-                    Toast.makeText(this, "Por favor, insira e-mail e senha.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Por favor, insira e-mail e senha.", Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
 
