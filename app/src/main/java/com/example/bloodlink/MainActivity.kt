@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.bloodlink.activitys.LoginActivity
+import com.example.bloodlink.activitys.ReceptoresActivity
 import com.example.bloodlink.classes.Receptor
 import com.google.firebase.database.FirebaseDatabase
 

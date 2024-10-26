@@ -1,46 +1,55 @@
 package com.example.bloodlink.activitys
 
+import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.Spinner
-import android.widget.Toast
+import android.widget.*
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.bloodlink.MainActivity
 import com.example.bloodlink.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import java.io.File
 import java.io.FileOutputStream
 
 class CadastroActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var auth: FirebaseAuth
+    private lateinit var storageReference: StorageReference
     private var tipoSanguineo: String? = null
     private val IMAGE_PICK_CODE = 1000
-    private lateinit var imageBtnFoto: ImageButton
+
+    private val requestPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
+            if (isGranted) {
+                openGallery()
+            } else {
+                Toast.makeText(this, "Permissão de acesso à galeria negada", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+    private lateinit var buttonImagemUploadedParaPefil: ImageButton
+    private var selectedImageUri: Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cadastro)
 
-        // Inicializa Firebase Authentication
         auth = FirebaseAuth.getInstance()
+        storageReference = FirebaseStorage.getInstance().reference
 
-        // Referenciar campos do layout
         val botaoVoltar = findViewById<ImageView>(R.id.btnVoltar)
         botaoVoltar.setOnClickListener(this)
 
@@ -49,17 +58,15 @@ class CadastroActivity : AppCompatActivity(), View.OnClickListener {
         val nomeUsuario = findViewById<EditText>(R.id.nomeUsuario)
         val dataNascimento = findViewById<EditText>(R.id.etDataNascimento)
         val celularUsuario = findViewById<EditText>(R.id.celularUsuario)
-
         val spinnerTipoSanguineo: Spinner = findViewById(R.id.spinnerTipoSangue)
         val spinnerCidadeUf: Spinner = findViewById(R.id.spinnerCidadeUf)
+        buttonImagemUploadedParaPefil = findViewById(R.id.imageBtnFotoPerfil)
 
-        // Preencher spinner com tipos sanguíneos
         val tiposSanguineos = arrayOf("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-")
         val adapter = ArrayAdapter(this, R.layout.spinner_item, tiposSanguineos)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerTipoSanguineo.adapter = adapter
 
-        // Preencher spinner com cidades
         val cidadesMetropolitanaRecife = arrayOf(
             "Recife - PE", "Olinda - PE", "Jaboatão dos Guararapes - PE",
             "Paulista - PE", "Camaragibe - PE", "São Lourenço da Mata - PE",
@@ -69,7 +76,6 @@ class CadastroActivity : AppCompatActivity(), View.OnClickListener {
         adapterCidadeUf.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerCidadeUf.adapter = adapterCidadeUf
 
-        // Configurando clickListeners
         val buttonCadastrar: Button = findViewById(R.id.botaoCadastro)
         buttonCadastrar.setOnClickListener {
             val email = emailUsuario.text.toString()
@@ -83,120 +89,125 @@ class CadastroActivity : AppCompatActivity(), View.OnClickListener {
             if (email.isNotEmpty() && senha.isNotEmpty() && nome.isNotEmpty() &&
                 dataNasc.isNotEmpty() && celular.isNotEmpty()
             ) {
-
                 cadastrarUsuario(email, senha, nome, dataNasc, celular, tipoSangue, cidadeUf)
             } else {
                 Toast.makeText(this, "Preencha todos os campos!", Toast.LENGTH_SHORT).show()
             }
         }
 
-        imageBtnFoto = findViewById(R.id.imageBtnFoto)
-        imageBtnFoto.setOnClickListener {
-            if (ContextCompat.checkSelfPermission(
-                    this,
-                    android.Manifest.permission.READ_EXTERNAL_STORAGE
-                )
-                == PackageManager.PERMISSION_DENIED
-            ) {
-                ActivityCompat.requestPermissions(
-                    this,
-                    arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),
-                    1001
-                )
-            } else {
-                pickImageFromGallery()
-            }
+        buttonImagemUploadedParaPefil.setOnClickListener {
+            checkAndRequestPermission()
         }
-
     }
 
-    private fun pickImageFromGallery() {
+    private fun checkAndRequestPermission() {
+        val permission = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            Manifest.permission.READ_MEDIA_IMAGES
+        } else {
+            Manifest.permission.READ_EXTERNAL_STORAGE
+        }
+
+        when {
+            ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED -> {
+                openGallery()
+            }
+            else -> {
+                requestPermissionLauncher.launch(permission)
+            }
+        }
+    }
+
+    private fun openGallery() {
         val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         startActivityForResult(intent, IMAGE_PICK_CODE)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
         if (resultCode == RESULT_OK && requestCode == IMAGE_PICK_CODE) {
-            val imageUri: Uri? = data?.data
-            imageBtnFoto.setImageURI(imageUri) // Exibe a imagem selecionada
-            imageUri?.let { saveImageToStorage(it) }
+            val imageUri = data?.data
+            imageUri?.let {
+                selectedImageUri = it
+                setProfileImage(it)
+            }
         }
     }
 
-    private fun saveImageToStorage(imageUri: Uri) {
-        val bitmap: Bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, imageUri)
-        val file = File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "user_photo.jpg")
-
-        FileOutputStream(file).use { fos ->
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos)
+    private fun setProfileImage(imageUri: Uri) {
+        try {
+            val bitmap: Bitmap = MediaStore.Images.Media.getBitmap(contentResolver, imageUri)
+            buttonImagemUploadedParaPefil.setImageBitmap(bitmap)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Toast.makeText(this, "Erro ao carregar a imagem.", Toast.LENGTH_SHORT).show()
         }
-        Toast.makeText(this, "Imagem salva em: ${file.absolutePath}", Toast.LENGTH_SHORT).show()
     }
 
+    private fun saveImageToStorage(imageUri: Uri, onSuccess: (String) -> Unit) {
+        val userId = auth.currentUser?.uid
+        if (userId == null) {
+            Toast.makeText(this, "Usuário não autenticado", Toast.LENGTH_SHORT).show()
+            return
+        }
 
-    private fun cadastrarUsuario(
-        email: String,
-        senha: String,
-        nome: String,
-        dataNasc: String,
-        celular: String,
-        tipoSangue: String,
-        cidadeUf: String
-    ) {
-        auth.createUserWithEmailAndPassword(email, senha)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    val userId = auth.currentUser?.uid
-                    salvarDadosNoDatabase(userId, nome, dataNasc, celular, tipoSangue, cidadeUf)
-                    Toast.makeText(this, "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT)
-                        .show()
-                    // Redirecionar após o cadastro
-                    startActivity(Intent(this, LoginActivity::class.java))
-                    finish()
-                } else {
-                    Toast.makeText(
-                        this,
-                        "Erro ao realizar o cadastro: ${task.exception?.message}",
-                        Toast.LENGTH_SHORT
-                    ).show()
+        val storageRef = storageReference.child("usuarios/$userId/perfil.jpg")
+        storageRef.putFile(imageUri)
+            .addOnSuccessListener { taskSnapshot ->
+                taskSnapshot.storage.downloadUrl.addOnSuccessListener { uri ->
+                    onSuccess(uri.toString())
+                }.addOnFailureListener {
+                    Toast.makeText(this, "Falha ao obter link da imagem", Toast.LENGTH_SHORT).show()
                 }
+            }
+            .addOnFailureListener { e ->
+                Toast.makeText(this, "Falha ao fazer upload: ${e.message}", Toast.LENGTH_SHORT).show()
             }
     }
 
+    private fun cadastrarUsuario(
+        email: String, senha: String, nome: String, dataNasc: String,
+        celular: String, tipoSangue: String, cidadeUf: String
+    ) {
+        auth.createUserWithEmailAndPassword(email, senha).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                val userId = auth.currentUser?.uid
+                if (selectedImageUri != null) {
+                    saveImageToStorage(selectedImageUri!!) { fotoPerfilUrl ->
+                        salvarDadosNoDatabase(userId, nome, dataNasc, celular, tipoSangue, cidadeUf, fotoPerfilUrl)
+                    }
+                } else {
+                    salvarDadosNoDatabase(userId, nome, dataNasc, celular, tipoSangue, cidadeUf, "")
+                }
+                startActivity(Intent(this, LoginActivity::class.java))
+                finish()
+            } else {
+                Toast.makeText(this, "Erro ao cadastrar: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
     private fun salvarDadosNoDatabase(
-        userId: String?,
-        nome: String,
-        dataNasc: String,
-        celular: String,
-        tipoSangue: String,
-        cidadeUf: String
+        userId: String?, nome: String, dataNasc: String, celular: String,
+        tipoSangue: String, cidadeUf: String, fotoPerfilUrl: String
     ) {
         val database = FirebaseDatabase.getInstance()
         val reference = database.getReference("Usuarios")
 
         val usuarioMap = mapOf(
-            "nome" to nome,
-            "dataNascimento" to dataNasc,
-            "celular" to celular,
-            "tipoSanguineo" to tipoSangue,
-            "cidadeUf" to cidadeUf
+            "nome" to nome, "dataNascimento" to dataNasc, "celular" to celular,
+            "tipoSanguineo" to tipoSangue, "cidadeUf" to cidadeUf, "fotoPerfil" to fotoPerfilUrl
         )
 
         userId?.let {
             reference.child(it).setValue(usuarioMap).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    Log.d("Cadastro", "Dados salvos no Firebase Realtime Database.")
+                    Log.d("Cadastro", "Dados salvos com sucesso no Database.")
                 } else {
-                    Log.d("Cadastro", "Erro ao salvar os dados: ${task.exception?.message}")
+                    Log.d("Cadastro", "Erro ao salvar dados: ${task.exception?.message}")
                 }
             }
         }
-
-
     }
-
 
     override fun onClick(view: View) {
         when (view.id) {

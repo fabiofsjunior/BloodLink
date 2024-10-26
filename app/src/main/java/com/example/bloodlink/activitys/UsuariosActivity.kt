@@ -3,8 +3,6 @@ package com.example.bloodlink.activitys
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
@@ -13,13 +11,17 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.bumptech.glide.Glide
 import com.example.bloodlink.MainActivity
 import com.example.bloodlink.R
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 
 class UsuariosActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var auth: FirebaseAuth
-
 
     private lateinit var fotoPerfil: ImageView
     private lateinit var textNomeUsuario: TextView
@@ -40,10 +42,51 @@ class UsuariosActivity : AppCompatActivity(), View.OnClickListener {
 
         auth = FirebaseAuth.getInstance()
 
-        val logoutButton = findViewById<ImageView>(R.id.buttonLogout)
-        logoutButton.setOnClickListener(this)
+        // Referências para os componentes da UI
+        fotoPerfil = findViewById(R.id.fotoPerfil) // Adicione este ID no seu layout
+        textNomeUsuario = findViewById(R.id.textNomeUsuario) // Adicione este ID no seu layout
+        textTipoSanguineo = findViewById(R.id.textTipoSanguineo) // Adicione este ID no seu layout
+        textDataNascimento = findViewById(R.id.textDataNascimento) // Adicione este ID no seu layout
+        textCidadeUf = findViewById(R.id.textCidadeUf) // Adicione este ID no seu layout
+        buttonLogout = findViewById<ImageButton>(R.id.buttonLogout)
 
+        buttonLogout.setOnClickListener(this)
 
+        carregarDadosUsuario() // Carregar os dados do usuário ao iniciar a atividade
+    }
+
+    private fun carregarDadosUsuario() {
+        val userId = auth.currentUser?.uid
+        if (userId != null) {
+            val database = FirebaseDatabase.getInstance()
+            val reference = database.getReference("Usuarios").child(userId)
+
+            reference.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        val nome = snapshot.child("nome").getValue(String::class.java)
+                        val tipoSanguineo = snapshot.child("tipoSanguineo").getValue(String::class.java)
+                        val dataNascimento = snapshot.child("dataNascimento").getValue(String::class.java)
+                        val cidadeUf = snapshot.child("cidadeUf").getValue(String::class.java)
+                        val fotoPerfilUrl = snapshot.child("fotoPerfil").getValue(String::class.java)
+
+                        textNomeUsuario.text = nome
+                        textTipoSanguineo.text = tipoSanguineo
+                        textDataNascimento.text = dataNascimento
+                        textCidadeUf.text = cidadeUf
+
+                        // Carregar a imagem do URL usando Glide
+                        Glide.with(this@UsuariosActivity)
+                            .load(fotoPerfilUrl)
+                            .into(fotoPerfil)
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Toast.makeText(this@UsuariosActivity, "Erro ao carregar dados: ${error.message}", Toast.LENGTH_SHORT).show()
+                }
+            })
+        }
     }
 
     override fun onClick(view: View) {
@@ -56,9 +99,7 @@ class UsuariosActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun logout() {
         auth.signOut() // Faz o logout
-        // Você pode redirecionar para a tela de login ou mostrar uma mensagem
         Toast.makeText(this, "Logout realizado com sucesso", Toast.LENGTH_SHORT).show()
-        // Redirecionar para a tela de login, por exemplo:
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish() // Finaliza a MainActivity

@@ -6,7 +6,7 @@
     android:background="#C96868"
     android:gravity="center"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="30dp">
 
     <ImageButton
         android:id="@+id/buttonLogout"
