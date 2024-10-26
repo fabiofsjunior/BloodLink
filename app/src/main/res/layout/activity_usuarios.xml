@@ -1,33 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#C96868"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:padding="30dp">
+    android:padding="16dp">
 
     <ImageButton
         android:id="@+id/buttonLogout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="end"
         android:background="@null"
-        android:src="@drawable/icone_logout" />
-
+        android:src="@drawable/icone_logout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvTitulo"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
         android:fontFamily="@font/lilita_one"
         android:text="Carteirinha de Doação de Sangue"
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:paddingBottom="10dp"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        app:layout_constraintTop_toBottomOf="@id/buttonLogout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"/>
 
     <ImageView
         android:id="@+id/fotoPerfil"
@@ -35,73 +37,101 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:background="@null"
-        android:src="@drawable/foto_perfil" />
+        android:src="@drawable/foto_perfil"
+        app:layout_constraintTop_toBottomOf="@id/tvTitulo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
 
     <View
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="2dp"
         android:background="@android:color/darker_gray"
-        android:layout_marginBottom="16dp"
-        android:layout_marginTop="10dp"/>
+        app:layout_constraintTop_toBottomOf="@id/fotoPerfil"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginVertical="16dp" />
 
     <TextView
         android:id="@+id/textNomeUsuario"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginVertical="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="180dp"
+        android:background="#FFF4EA"
+        android:fontFamily="@font/lilita_one"
         android:text="Nome: João da Silva"
-        android:fontFamily="@font/lilita_one"
-        android:background="#FFF4EA"
-        android:textSize="20sp"
-        android:textColor="@color/black" />
-
-    <TextView
-        android:id="@+id/textTipoSanguineo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Tipo Sanguíneo: O+"
-        android:textSize="20sp"
-        android:fontFamily="@font/lilita_one"
-        android:background="#FFF4EA"
         android:textColor="@color/black"
-        />
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fotoPerfil" />
 
     <TextView
         android:id="@+id/textDataNascimento"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Data de Nascimento: 01/01/1990"
-        android:fontFamily="@font/lilita_one"
+        android:layout_marginVertical="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
         android:background="#FFF4EA"
+        android:fontFamily="@font/lilita_one"
+        android:text="Data de Nascimento: 01/01/1990"
+        android:textColor="@color/black"
         android:textSize="20sp"
-        android:textColor="@color/black" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textTipoSanguineo" />
 
     <TextView
         android:id="@+id/textCidadeUf"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Cidade: Recife - PE"
-        android:fontFamily="@font/lilita_one"
+        android:layout_marginVertical="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
         android:background="#FFF4EA"
+        android:fontFamily="@font/lilita_one"
+        android:text="Cidade: Recife - PE"
+        android:textColor="@color/black"
         android:textSize="20sp"
-        android:textColor="@color/black" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textDataNascimento" />
 
     <View
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="2dp"
+        android:layout_marginTop="16dp"
         android:background="@android:color/darker_gray"
-        android:layout_marginTop="15dp"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textCidadeUf" />
 
-    <Button
-        android:id="@+id/botaoEditar"
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/textTipoSanguineo"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="250dp"
-        android:backgroundTint="#FADFA1"
+        android:layout_marginVertical="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        android:background="#FFF4EA"
         android:fontFamily="@font/lilita_one"
-        android:text="Editar Dados"
+        android:text="Tipo Sanguíneo: O+"
         android:textColor="@color/black"
-        android:textSize="18sp" />
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textNomeUsuario" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
