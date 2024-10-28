@@ -8,19 +8,25 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.bloodlink.R
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Date
+import java.util.Locale
 
-class ReceptorAdapter(private val receptores: List<Receptor>) : RecyclerView.Adapter<ReceptorAdapter.ReceptorViewHolder>() {
+class ReceptorAdapter(private val receptores: List<Receptor>) :
+    RecyclerView.Adapter<ReceptorAdapter.ReceptorViewHolder>() {
 
     inner class ReceptorViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val nome: TextView = view.findViewById(R.id.itemNome)
         val fatorSanguineo: TextView = view.findViewById(R.id.itemFatorSanguineo)
         val cidadeUf: TextView = view.findViewById(R.id.itemCidadeUf)
-        val idade: TextView = view.findViewById(R.id.itemIdade)
+        val dataNascimento: TextView = view.findViewById(R.id.itemDataNascimento)
         val foto: ImageView = view.findViewById(R.id.itemFoto)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReceptorViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_receptor, parent, false)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.item_receptor, parent, false)
         return ReceptorViewHolder(view)
     }
 
@@ -29,7 +35,7 @@ class ReceptorAdapter(private val receptores: List<Receptor>) : RecyclerView.Ada
         holder.nome.text = receptor.nome
         holder.fatorSanguineo.text = receptor.fatorSanguineoRH
         holder.cidadeUf.text = receptor.cidadeUF
-        holder.idade.text = calcularIdade(receptor.dataNascimento)
+        holder.dataNascimento.text = calcularIdade(receptor.dataNascimento)
 
         // Carregar imagem com Glide
         Glide.with(holder.foto.context)
@@ -43,7 +49,32 @@ class ReceptorAdapter(private val receptores: List<Receptor>) : RecyclerView.Ada
 
     // Função para calcular idade com base na data de nascimento (exemplo)
     private fun calcularIdade(dataNascimento: String): String {
-        // Implementar cálculo baseado na data fornecida ou retornar "N/A" caso falhe
-        return "N/A"
+        return try {
+            // Definindo o formato da data
+            val format = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()) // Corrigido para dd/MM/yyyy
+            // Convertendo a string para um objeto Date
+            val birthDate: Date = format.parse(dataNascimento) ?: return "N/A"
+
+            // Obtendo a data atual
+            val currentCalendar = Calendar.getInstance()
+
+            // Calculando a idade
+            val birthCalendar = Calendar.getInstance().apply {
+                time = birthDate
+            }
+            var age = currentCalendar.get(Calendar.YEAR) - birthCalendar.get(Calendar.YEAR)
+
+            // Ajustando a idade caso o aniversário ainda não tenha ocorrido no ano atual
+            if (currentCalendar.get(Calendar.MONTH) < birthCalendar.get(Calendar.MONTH) ||
+                (currentCalendar.get(Calendar.MONTH) == birthCalendar.get(Calendar.MONTH) &&
+                        currentCalendar.get(Calendar.DAY_OF_MONTH) < birthCalendar.get(Calendar.DAY_OF_MONTH))
+            ) {
+                age--
+            }
+
+            age.toString()+ " anos."
+        } catch (e: Exception) {
+            "N/A"
+        }
     }
 }

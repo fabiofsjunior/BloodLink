@@ -2,15 +2,10 @@ package com.example.bloodlink.activitys
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.ImageView
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.bloodlink.R
 import com.example.bloodlink.classes.Receptor
 import com.example.bloodlink.classes.ReceptorAdapter
@@ -18,7 +13,6 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.storage.FirebaseStorage
 
 class ReceptoresActivity : AppCompatActivity() {
 
@@ -30,7 +24,8 @@ class ReceptoresActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_receptores)
 
-        recyclerView = findViewById(R.id.recyclerViewReceptores) // Certifique-se de ter uma RecyclerView no layout
+        recyclerView =
+            findViewById(R.id.recyclerViewReceptores) // Certifique-se de ter uma RecyclerView no layout
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         receptores = mutableListOf()
@@ -40,7 +35,6 @@ class ReceptoresActivity : AppCompatActivity() {
         val database = FirebaseDatabase.getInstance().getReference("Receptores")
 
         Log.d("Firebase", "Database connected: $database")
-
 
 
         // Obter dados do Firebase Realtime Database
@@ -55,7 +49,11 @@ class ReceptoresActivity : AppCompatActivity() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(this@ReceptoresActivity, "Erro ao carregar dados", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this@ReceptoresActivity,
+                    "Erro ao carregar dados",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         })
     }
