@@ -22,5 +22,8 @@ data class Receptor(
     var fotoUrl: String = "",
 
     @get:PropertyName("Fator_Sanguíneo_RH") @set:PropertyName("Fator_Sanguíneo_RH")
-    var fatorSanguineoRH: String = ""
+    var fatorSanguineoRH: String = "",
+
+    @get:PropertyName("Motivo_Doacao") @set:PropertyName("Motivo_Doacao")
+    var motivoDoacao: String = ""
 )

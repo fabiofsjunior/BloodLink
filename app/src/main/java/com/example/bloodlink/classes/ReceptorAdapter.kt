@@ -22,6 +22,7 @@ class ReceptorAdapter(private val receptores: List<Receptor>) :
         val cidadeUf: TextView = view.findViewById(R.id.itemCidadeUf)
         val dataNascimento: TextView = view.findViewById(R.id.itemDataNascimento)
         val foto: ImageView = view.findViewById(R.id.itemFoto)
+        val motivoDoacao: TextView = view.findViewById(R.id.itemMotivoDoacao)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReceptorViewHolder {
@@ -36,6 +37,7 @@ class ReceptorAdapter(private val receptores: List<Receptor>) :
         holder.fatorSanguineo.text = receptor.fatorSanguineoRH
         holder.cidadeUf.text = receptor.cidadeUF
         holder.dataNascimento.text = calcularIdade(receptor.dataNascimento)
+        holder.motivoDoacao.text = receptor.motivoDoacao
 
         // Carregar imagem com Glide
         Glide.with(holder.foto.context)
