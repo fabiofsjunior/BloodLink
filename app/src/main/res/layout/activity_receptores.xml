@@ -1,52 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FADFA1"
-    android:gravity="center"
     android:orientation="vertical"
     android:padding="16dp">
 
+    <!-- Título do layout -->
     <TextView
         android:id="@+id/receptoresTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Receptores"
-        android:textSize="30dp"
-        />
+        android:textSize="30sp" />
 
-    <LinearLayout
-        android:id="@+id/cardBox"
+    <!-- RecyclerView para exibir os receptores -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewReceptores"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center">
-
-        <ImageButton
-            android:id="@+id/card1"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginTop="8dp"
-            android:background="#E0E0E0"
-            android:scaleType="centerCrop"
-            android:layout_margin="5dp"
-            android:src="@drawable/icone_foto"
-            />
-
-        <ImageButton
-            android:id="@+id/card2"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginTop="8dp"
-            android:background="#E0E0E0"
-            android:scaleType="centerCrop"
-            android:layout_margin="5dp"
-            android:src="@drawable/icone_foto"
-            />
-
-
-
-    </LinearLayout>
-
+        android:layout_marginTop="16dp"
+        android:padding="8dp" />
 
 </LinearLayout>

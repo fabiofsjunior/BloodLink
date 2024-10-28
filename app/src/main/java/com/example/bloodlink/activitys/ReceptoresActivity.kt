@@ -1,52 +1,62 @@
 package com.example.bloodlink.activitys
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.bloodlink.R
+import com.example.bloodlink.classes.Receptor
+import com.example.bloodlink.classes.ReceptorAdapter
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 
 class ReceptoresActivity : AppCompatActivity() {
+
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var receptorAdapter: ReceptorAdapter
+    private lateinit var receptores: MutableList<Receptor>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_receptores)
 
-        // Ajuste para sistema de barras
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+        recyclerView = findViewById(R.id.recyclerViewReceptores) // Certifique-se de ter uma RecyclerView no layout
+        recyclerView.layoutManager = LinearLayoutManager(this)
+
+        receptores = mutableListOf()
+        receptorAdapter = ReceptorAdapter(receptores)
+        recyclerView.adapter = receptorAdapter
+
+        val database = FirebaseDatabase.getInstance().getReference("Receptores")
+
+        Log.d("Firebase", "Database connected: $database")
 
 
-        val card1 = findViewById<ImageView>(R.id.card1)
-//        // URL da imagem da internet
-//        val imageUrl =
-//            "https://firebasestorage.googleapis.com/v0/b/bloodlink-462f7.appspot.com/o/foto1.jpg?alt=media&token=85999992-085b-4611-9862-4db2e89a91f7"
-//
-//        // Usar Glide para carregar a imagem na ImageView
-//        Glide.with(this)
-//            .load(imageUrl)
-//            .into(card1) // Substitua 'imageView' pelo ID da sua ImageView
 
-        // Referência ao Firebase Storage (FUNCIONANDO DESTA FORMA)
-        val storageReference = FirebaseStorage.getInstance().reference.child("foto1.jpg")
+        // Obter dados do Firebase Realtime Database
+        database.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                receptores.clear()
+                for (data in snapshot.children) {
+                    val receptor = data.getValue(Receptor::class.java)
+                    receptor?.let { receptores.add(it) }
+                }
+                receptorAdapter.notifyDataSetChanged()
+            }
 
-        // Obter a URL de download
-        storageReference.downloadUrl.addOnSuccessListener { uri ->
-            // Usar Glide para carregar a imagem na ImageView
-            Glide.with(this)
-                .load(uri) // Carrega a URL da imagem
-                .into(card1) // Substitua pelo ID da sua ImageView
-        }.addOnFailureListener { exception ->
-            // Tratar erro se houver falha ao obter a URL
-            exception.printStackTrace()
-        }
-
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(this@ReceptoresActivity, "Erro ao carregar dados", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 }

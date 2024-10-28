@@ -86,7 +86,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(view: View) {
-        val login = Intent(this, LoginActivity::class.java)
+        val login = Intent(this, ReceptoresActivity::class.java)
         startActivity(login)
     }
 
