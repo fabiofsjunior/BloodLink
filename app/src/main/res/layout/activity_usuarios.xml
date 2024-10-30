@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -21,48 +21,48 @@
         android:id="@+id/tvTitulo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/lilita_one"
         android:text="Carteirinha de Doação de Sangue"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="24sp"
-        app:layout_constraintTop_toBottomOf="@id/buttonLogout"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/buttonLogout" />
 
     <ImageView
         android:id="@+id/fotoPerfil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="16dp"
         android:background="@null"
-        android:src="@drawable/foto_perfil"
-        app:layout_constraintTop_toBottomOf="@id/tvTitulo"
-        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/icone_man"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTitulo" />
 
     <View
         android:layout_width="0dp"
         android:layout_height="2dp"
+        android:layout_marginVertical="16dp"
         android:background="@android:color/darker_gray"
-        app:layout_constraintTop_toBottomOf="@id/fotoPerfil"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginVertical="16dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fotoPerfil" />
 
     <TextView
         android:id="@+id/textNomeUsuario"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginVertical="30dp"
-        android:layout_marginRight="30dp"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="180dp"
+        android:layout_marginRight="30dp"
         android:background="#FFF4EA"
         android:fontFamily="@font/lilita_one"
-        android:text="Nome: João da Silva"
+        android:text="Nome: Nome do Usuário"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -75,12 +75,12 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginVertical="8dp"
+        android:layout_marginLeft="30dp"
         android:layout_marginTop="8dp"
         android:layout_marginRight="30dp"
-        android:layout_marginLeft="30dp"
         android:background="#FFF4EA"
         android:fontFamily="@font/lilita_one"
-        android:text="Data de Nascimento: 01/01/1990"
+        android:text="Data de Nascimento: dd/MM/yyyy"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -93,12 +93,12 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginVertical="8dp"
+        android:layout_marginLeft="30dp"
         android:layout_marginTop="8dp"
         android:layout_marginRight="30dp"
-        android:layout_marginLeft="30dp"
         android:background="#FFF4EA"
         android:fontFamily="@font/lilita_one"
-        android:text="Cidade: Recife - PE"
+        android:text="Cidade: Cidade-UF"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -121,17 +121,54 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginVertical="8dp"
+        android:layout_marginLeft="30dp"
         android:layout_marginTop="8dp"
         android:layout_marginRight="30dp"
-        android:layout_marginLeft="30dp"
         android:background="#FFF4EA"
         android:fontFamily="@font/lilita_one"
-        android:text="Tipo Sanguíneo: O+"
+        android:text="Tipo Sanguíneo: Tipo do Sangue"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textNomeUsuario" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="16dp">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/icone_home"
+            android:text="HOME"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/botaoDoeSangue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/icone_heart"
+            android:text="DOE"
+            android:textColor="@color/black" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/icone_man"
+            android:text="PERFIL"
+            android:textColor="@color/black" />
+
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

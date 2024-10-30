@@ -1,8 +1,10 @@
 package com.example.bloodlink.activitys
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
@@ -29,7 +31,9 @@ class UsuariosActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var textDataNascimento: TextView
     private lateinit var textCidadeUf: TextView
     private lateinit var buttonLogout: ImageButton
+    private lateinit var buttonDoarSangue: Button
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -49,8 +53,11 @@ class UsuariosActivity : AppCompatActivity(), View.OnClickListener {
         textDataNascimento = findViewById(R.id.textDataNascimento) // Adicione este ID no seu layout
         textCidadeUf = findViewById(R.id.textCidadeUf) // Adicione este ID no seu layout
         buttonLogout = findViewById<ImageButton>(R.id.buttonLogout)
+        buttonDoarSangue = findViewById(R.id.botaoDoeSangue)
+
 
         buttonLogout.setOnClickListener(this)
+        buttonDoarSangue.setOnClickListener(this)
 
         carregarDadosUsuario() // Carregar os dados do usuário ao iniciar a atividade
     }
@@ -65,10 +72,13 @@ class UsuariosActivity : AppCompatActivity(), View.OnClickListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.exists()) {
                         val nome = snapshot.child("nome").getValue(String::class.java)
-                        val tipoSanguineo = snapshot.child("tipoSanguineo").getValue(String::class.java)
-                        val dataNascimento = snapshot.child("dataNascimento").getValue(String::class.java)
+                        val tipoSanguineo =
+                            snapshot.child("tipoSanguineo").getValue(String::class.java)
+                        val dataNascimento =
+                            snapshot.child("dataNascimento").getValue(String::class.java)
                         val cidadeUf = snapshot.child("cidadeUf").getValue(String::class.java)
-                        val fotoPerfilUrl = snapshot.child("fotoPerfil").getValue(String::class.java)
+                        val fotoPerfilUrl =
+                            snapshot.child("fotoPerfil").getValue(String::class.java)
 
                         textNomeUsuario.text = nome
                         textTipoSanguineo.text = tipoSanguineo
@@ -83,7 +93,11 @@ class UsuariosActivity : AppCompatActivity(), View.OnClickListener {
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                    Toast.makeText(this@UsuariosActivity, "Erro ao carregar dados: ${error.message}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this@UsuariosActivity,
+                        "Erro ao carregar dados: ${error.message}",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             })
         }
@@ -93,6 +107,12 @@ class UsuariosActivity : AppCompatActivity(), View.OnClickListener {
         when (view.id) {
             R.id.buttonLogout -> {
                 logout()
+                finish()
+            }
+            R.id.botaoDoeSangue ->{
+                val intent = Intent(this, ReceptoresActivity::class.java)
+                startActivity(intent)
+                finish() // Finaliza a MainActivity
             }
         }
     }
