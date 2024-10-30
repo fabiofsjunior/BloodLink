@@ -1,16 +1,13 @@
 package com.example.bloodlink.activitys
 
 import android.content.Intent
-import android.media.Image
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageButton
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.bloodlink.MainActivity
 import com.example.bloodlink.R
 import com.example.bloodlink.classes.ItemDecoration
 import com.example.bloodlink.classes.Receptor
@@ -73,7 +70,6 @@ class ReceptoresActivity : AppCompatActivity(), View.OnClickListener {
         val botaoVoltar: ImageButton = findViewById(R.id.btnVoltar)
         botaoVoltar.setOnClickListener(this)
     }
-
 
 
     override fun onClick(view: View) {
