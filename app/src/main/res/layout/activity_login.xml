@@ -1,93 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#7EACB5"
-    android:gravity="center"
-    android:orientation="vertical"
     tools:context=".activitys.LoginActivity">
 
+    <!-- Botão Voltar -->
     <ImageButton
         android:id="@+id/botaoVoltar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="start"
+        android:layout_constraintMargin="16dp"
+        android:layout_constraintStart_toStartOf="parent"
+        android:layout_constraintTop_toTopOf="parent"
         android:background="@null"
-        android:src="@drawable/icone_voltar" />
+        android:src="@drawable/icone_voltar"
+        app:layout_constraintStart_toStartOf="parent" />
 
+    <!-- Título Login -->
+
+    <!-- Campo de email -->
+
+    <!-- Campo de senha -->
+
+    <!-- Botão Login -->
+
+    <!-- Botão Cadastre-se -->
     <TextView
-        android:layout_width="200dp"
+        android:id="@+id/tituloLogin"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_constraintTop_toBottomOf="@id/botaoVoltar"
+        android:layout_constraintEnd_toEndOf="parent"
+        android:layout_constraintStart_toStartOf="parent"
+        android:fontFamily="@font/lilita_one"
         android:gravity="center"
         android:text="Login"
-        android:layout_marginTop="50dp"
-        android:fontFamily="@font/lilita_one"
-        android:textSize="36sp" />
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="142dp" />
 
     <EditText
         android:id="@+id/emailUserLogin"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:hint="EMAIL"
-        android:textSize="24sp"
-        android:padding="10dp"
+        android:layout_constraintMarginTop="32dp"
+        android:layout_constraintWidth_percent="0.8"
+        android:layout_constraintTop_toBottomOf="@id/tituloLogin"
+        android:layout_constraintEnd_toEndOf="parent"
+        android:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="8dp"
         android:background="@color/white"
         android:fontFamily="@font/lilita_one"
+        android:hint="EMAIL"
         android:inputType="textEmailAddress"
-        android:textAlignment="center" />
+        android:padding="12dp"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/senhaUserLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/senhaUserLogin"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:hint="SENHA"
-        android:layout_marginTop="8dp"
-        android:textSize="24sp"
-        android:padding="10dp"
+        android:layout_constraintMarginTop="16dp"
+        android:layout_constraintWidth_percent="0.8"
+        android:layout_constraintTop_toBottomOf="@id/emailUserLogin"
+        android:layout_constraintEnd_toEndOf="parent"
+        android:layout_constraintStart_toStartOf="parent"
         android:background="@color/white"
         android:fontFamily="@font/lilita_one"
+        android:hint="SENHA"
         android:inputType="textPassword"
-        android:textAlignment="center" />
+        android:padding="12dp"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="403dp" />
 
     <Button
         android:id="@+id/botaoLogin"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="150dp"
-        android:textColor="@color/black"
+        android:layout_constraintMarginTop="32dp"
+        android:layout_constraintWidth_percent="0.6"
+        android:layout_constraintTop_toBottomOf="@id/senhaUserLogin"
+        android:layout_constraintEnd_toEndOf="parent"
+        android:layout_constraintStart_toStartOf="parent"
         android:backgroundTint="#FADFA1"
-        android:text="Login"
-        android:textSize="24sp"
         android:fontFamily="@font/lilita_one"
-        android:onClick="onClick" />
+        android:onClick="onClick"
+        android:text="Login"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/botaoCadastrar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/botaoCadastrar"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:textColor="@color/black"
+        android:layout_constraintMarginTop="16dp"
+        android:layout_constraintWidth_percent="0.6"
+        android:layout_constraintTop_toBottomOf="@id/botaoLogin"
+        android:layout_constraintEnd_toEndOf="parent"
+        android:layout_constraintStart_toStartOf="parent"
         android:backgroundTint="#C96868"
-        android:textSize="24sp"
         android:fontFamily="@font/lilita_one"
+        android:onClick="onClick"
         android:text="Cadastre-se"
-        android:onClick="onClick" />
-
-<!--    <Button-->
-<!--        android:id="@+id/botaoLoginGoogle"-->
-<!--        android:layout_width="200dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_gravity="center"-->
-<!--        android:textColor="@color/black"-->
-<!--        android:backgroundTint="#FFFFFF"-->
-<!--        android:textSize="18sp"-->
-<!--        android:fontFamily="@font/lilita_one"-->
-<!--        android:text="Login Google"-->
-<!--        android:onClick="onClick" />-->
-
-</LinearLayout>
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="636dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
