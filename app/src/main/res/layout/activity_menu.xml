@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end|center_vertical"
             android:layout_marginEnd="16dp"
-            android:src="@drawable/icone_mapa"
+            android:src="@drawable/icone_mapan"
             android:background="@color/white"
             android:clickable="true"
             android:focusable="true" />

@@ -1,0 +1,88 @@
+{
+  "Locais_Coleta": {
+    "Olinda/PE": [
+      {
+        "Nome": "Hemocentro de Olinda",
+        "Endereco": "Rua de São Bento, 123, Olinda, PE",
+        "Telefone": "(81) 3212-3456"
+      },
+      {
+        "Nome": "Hospital Municipal de Olinda",
+        "Endereco": "Avenida Getúlio Vargas, 456, Olinda, PE",
+        "Telefone": "(81) 3322-9876"
+      }
+    ],
+    "Recife/PE": [
+      {
+        "Nome": "Hemocentro do Recife",
+        "Endereco": "Rua João Fernandes, 789, Recife, PE",
+        "Telefone": "(81) 3325-6789"
+      },
+      {
+        "Nome": "Hospital da Restauração",
+        "Endereco": "Avenida Conselheiro Rosa e Silva, 321, Recife, PE",
+        "Telefone": "(81) 3355-4321"
+      }
+    ],
+    "Paulista/PE": [
+      {
+        "Nome": "Hospital Paulistano",
+        "Endereco": "Rua do Comércio, 234, Paulista, PE",
+        "Telefone": "(81) 3423-8765"
+      },
+      {
+        "Nome": "Unidade de Saúde de Paulista",
+        "Endereco": "Avenida Prefeito Jorge Vieira, 567, Paulista, PE",
+        "Telefone": "(81) 3245-6789"
+      }
+    ],
+    "Jaboatão dos Guararapes/PE": [
+      {
+        "Nome": "Hospital Jaboatão",
+        "Endereco": "Rua Nova, 101, Jaboatão dos Guararapes, PE",
+        "Telefone": "(81) 3432-4567"
+      },
+      {
+        "Nome": "Centro de Hemoterapia",
+        "Endereco": "Avenida Olinda, 202, Jaboatão dos Guararapes, PE",
+        "Telefone": "(81) 3321-4567"
+      }
+    ],
+    "Cabo de Santo Agostinho/PE": [
+      {
+        "Nome": "Hospital Municipal de Cabo",
+        "Endereco": "Avenida Santos Dumont, 303, Cabo de Santo Agostinho, PE",
+        "Telefone": "(81) 3332-7890"
+      },
+      {
+        "Nome": "Hemocentro do Cabo",
+        "Endereco": "Rua do Ouro, 404, Cabo de Santo Agostinho, PE",
+        "Telefone": "(81) 3356-7890"
+      }
+    ],
+    "São Lourenço da Mata/PE": [
+      {
+        "Nome": "Hospital São Lourenço",
+        "Endereco": "Rua da Paz, 505, São Lourenço da Mata, PE",
+        "Telefone": "(81) 3213-4567"
+      },
+      {
+        "Nome": "Unidade de Coleta de Sangue",
+        "Endereco": "Avenida Getúlio Vargas, 606, São Lourenço da Mata, PE",
+        "Telefone": "(81) 3321-7890"
+      }
+    ],
+    "Igarassu/PE": [
+      {
+        "Nome": "Hospital de Igarassu",
+        "Endereco": "Rua da Liberdade, 707, Igarassu, PE",
+        "Telefone": "(81) 3432-3456"
+      },
+      {
+        "Nome": "Centro de Saúde de Igarassu",
+        "Endereco": "Avenida dos Cangurus, 808, Igarassu, PE",
+        "Telefone": "(81) 3355-9876"
+      }
+    ]
+  }
+}
