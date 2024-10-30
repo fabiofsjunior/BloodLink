@@ -7,11 +7,16 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
-import android.widget.*
+import android.widget.ArrayAdapter
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageButton
+import android.widget.ImageView
+import android.widget.Spinner
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -21,8 +26,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import java.io.File
-import java.io.FileOutputStream
 
 class CadastroActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -36,7 +39,8 @@ class CadastroActivity : AppCompatActivity(), View.OnClickListener {
             if (isGranted) {
                 openGallery()
             } else {
-                Toast.makeText(this, "Permissão de acesso à galeria negada", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Permissão de acesso à galeria negada", Toast.LENGTH_SHORT)
+                    .show()
             }
         }
 
@@ -108,9 +112,13 @@ class CadastroActivity : AppCompatActivity(), View.OnClickListener {
         }
 
         when {
-            ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED -> {
+            ContextCompat.checkSelfPermission(
+                this,
+                permission
+            ) == PackageManager.PERMISSION_GRANTED -> {
                 openGallery()
             }
+
             else -> {
                 requestPermissionLauncher.launch(permission)
             }
@@ -160,7 +168,8 @@ class CadastroActivity : AppCompatActivity(), View.OnClickListener {
                 }
             }
             .addOnFailureListener { e ->
-                Toast.makeText(this, "Falha ao fazer upload: ${e.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Falha ao fazer upload: ${e.message}", Toast.LENGTH_SHORT)
+                    .show()
             }
     }
 
@@ -173,7 +182,15 @@ class CadastroActivity : AppCompatActivity(), View.OnClickListener {
                 val userId = auth.currentUser?.uid
                 if (selectedImageUri != null) {
                     saveImageToStorage(selectedImageUri!!) { fotoPerfilUrl ->
-                        salvarDadosNoDatabase(userId, nome, dataNasc, celular, tipoSangue, cidadeUf, fotoPerfilUrl)
+                        salvarDadosNoDatabase(
+                            userId,
+                            nome,
+                            dataNasc,
+                            celular,
+                            tipoSangue,
+                            cidadeUf,
+                            fotoPerfilUrl
+                        )
                     }
                 } else {
                     salvarDadosNoDatabase(userId, nome, dataNasc, celular, tipoSangue, cidadeUf, "")
@@ -181,7 +198,11 @@ class CadastroActivity : AppCompatActivity(), View.OnClickListener {
                 startActivity(Intent(this, LoginActivity::class.java))
                 finish()
             } else {
-                Toast.makeText(this, "Erro ao cadastrar: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this,
+                    "Erro ao cadastrar: ${task.exception?.message}",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
     }

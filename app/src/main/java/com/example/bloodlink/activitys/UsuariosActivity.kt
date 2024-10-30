@@ -107,12 +107,10 @@ class UsuariosActivity : AppCompatActivity(), View.OnClickListener {
         when (view.id) {
             R.id.buttonLogout -> {
                 logout()
-                finish()
             }
             R.id.botaoDoeSangue ->{
                 val intent = Intent(this, ReceptoresActivity::class.java)
                 startActivity(intent)
-                finish() // Finaliza a MainActivity
             }
         }
     }

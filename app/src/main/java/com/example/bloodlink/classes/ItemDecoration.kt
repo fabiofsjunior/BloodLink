@@ -17,7 +17,7 @@ class ItemDecoration(
 
     // Cor da borda a partir do colors.xml
     private val paint = Paint().apply {
-        color = ContextCompat.getColor(context, R.color.red) // Cor da borda personalizada
+        color = ContextCompat.getColor(context, R.color.offwhite) // Cor da borda personalizada
         strokeWidth = borderWidth // Espessura da borda
         style = Paint.Style.STROKE
     }

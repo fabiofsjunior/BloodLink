@@ -1,10 +1,16 @@
 package com.example.bloodlink.activitys
 
+import android.content.Intent
+import android.media.Image
 import android.os.Bundle
+import android.view.View
+import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.bloodlink.MainActivity
 import com.example.bloodlink.R
 import com.example.bloodlink.classes.ItemDecoration
 import com.example.bloodlink.classes.Receptor
@@ -14,11 +20,12 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
-class ReceptoresActivity : AppCompatActivity() {
+class ReceptoresActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var receptorAdapter: ReceptorAdapter
     private lateinit var receptores: MutableList<Receptor>
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,5 +69,19 @@ class ReceptoresActivity : AppCompatActivity() {
                 ).show()
             }
         })
+
+        val botaoVoltar: ImageButton = findViewById(R.id.btnVoltar)
+        botaoVoltar.setOnClickListener(this)
+    }
+
+
+
+    override fun onClick(view: View) {
+        when (view.id) {
+            R.id.btnVoltar -> {
+                val homeMain = Intent(this, UsuariosActivity::class.java)
+                startActivity(homeMain)
+            }
+        }
     }
 }
