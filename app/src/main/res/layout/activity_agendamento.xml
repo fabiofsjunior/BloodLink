@@ -1,48 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:id="@+id/main"
     android:padding="16dp">
+
+    <ImageButton
+        android:id="@+id/btnVoltar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:src="@drawable/icone_voltar" />
 
     <ImageView
         android:id="@+id/imageViewFoto"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:scaleType="centerCrop"/>
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:src="@drawable/icone_foto"
+        android:scaleType="centerCrop" />
 
-    <TextView
-        android:id="@+id/textViewNome"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/textViewNome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="NOME"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp"/> <!-- Margem inferior para espaçamento -->
+
+        <TextView
+            android:id="@+id/textViewFatorSanguineo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tipo do Sangue"
+            android:textColor="@color/red"
+            android:textSize="30sp"
+            android:layout_marginBottom="4dp"/> <!-- Margem inferior para espaçamento -->
+
+        <TextView
+            android:id="@+id/textViewCidadeUf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Recife-PE"
+            android:textSize="20sp"
+            android:layout_marginBottom="4dp"/> <!-- Margem inferior para espaçamento -->
+
+        <TextView
+            android:id="@+id/textViewDataNascimento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Idade"
+            android:textSize="20sp"
+            android:layout_marginBottom="4dp"/> <!-- Margem inferior para espaçamento -->
+
+        <TextView
+            android:id="@+id/textViewMotivoDoacao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Motivo"
+            android:textColor="@color/red"
+            android:textSize="24sp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="24sp"
-        android:textStyle="bold"/>
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:gravity="center">
 
-    <TextView
-        android:id="@+id/textViewFatorSanguineo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"/>
+        <ImageButton
+            android:id="@+id/btnCancelar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:src="@drawable/icone_cancelar"
+            android:layout_marginEnd="8dp" /> <!-- Usando marginEnd para responsividade -->
 
-    <TextView
-        android:id="@+id/textViewCidadeUf"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"/>
-
-    <TextView
-        android:id="@+id/textViewDataNascimento"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"/>
-
-    <TextView
-        android:id="@+id/textViewMotivoDoacao"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"/>
-
-
+        <ImageButton
+            android:id="@+id/btnConfirmar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:src="@drawable/icone_confirmar"
+            android:layout_marginStart="8dp" /> <!-- Usando marginStart para responsividade -->
+    </LinearLayout>
 
 </LinearLayout>
