@@ -36,7 +36,7 @@
         android:layout_width="291dp"
         android:layout_height="308dp"
         android:layout_gravity="center"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:background="@null"
         android:scaleType="centerCrop"
         android:src="@drawable/icone_man"
@@ -57,7 +57,7 @@
         android:id="@+id/textNomeUsuario"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="30dp"
+        android:layout_marginVertical="22dp"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="180dp"
         android:layout_marginRight="30dp"
@@ -75,7 +75,7 @@
         android:id="@+id/textDataNascimento"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="8dp"
+        android:layout_marginVertical="4dp"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="8dp"
         android:layout_marginRight="30dp"
@@ -93,7 +93,7 @@
         android:id="@+id/textCidadeUf"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="8dp"
+        android:layout_marginVertical="4dp"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="8dp"
         android:layout_marginRight="30dp"
@@ -110,7 +110,7 @@
     <View
         android:layout_width="0dp"
         android:layout_height="2dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="4dp"
         android:background="@android:color/darker_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -121,7 +121,7 @@
         android:id="@+id/textTipoSanguineo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="8dp"
+        android:layout_marginVertical="4dp"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="8dp"
         android:layout_marginRight="30dp"
@@ -145,6 +145,7 @@
         tools:layout_editor_absoluteX="16dp">
 
         <Button
+            android:id="@+id/botaoHome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -162,6 +163,7 @@
             android:textColor="@color/black" />
 
         <Button
+            android:id="@+id/botaoPerfil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"

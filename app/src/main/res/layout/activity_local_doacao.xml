@@ -7,4 +7,17 @@
     android:layout_height="match_parent"
     tools:context=".activitys.LocalDoacaoActivity">
 
+    <TextView
+        android:id="@+id/construcao"
+        android:layout_width="393dp"
+        android:layout_height="wrap_content"
+        android:text="Em construção"
+        android:textAlignment="center"
+        android:textSize="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

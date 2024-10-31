@@ -17,10 +17,14 @@ import com.bumptech.glide.Glide
 import com.example.bloodlink.MainActivity
 import com.example.bloodlink.R
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Date
+import java.util.Locale
 
 class UsuariosActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var auth: FirebaseAuth
@@ -31,7 +35,9 @@ class UsuariosActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var textDataNascimento: TextView
     private lateinit var textCidadeUf: TextView
     private lateinit var buttonLogout: ImageButton
+    private lateinit var buttonHome: Button
     private lateinit var buttonDoarSangue: Button
+    private lateinit var buttonPerfil: Button
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,11 +59,15 @@ class UsuariosActivity : AppCompatActivity(), View.OnClickListener {
         textDataNascimento = findViewById(R.id.textDataNascimento) // Adicione este ID no seu layout
         textCidadeUf = findViewById(R.id.textCidadeUf) // Adicione este ID no seu layout
         buttonLogout = findViewById<ImageButton>(R.id.buttonLogout)
+        buttonHome = findViewById(R.id.botaoHome)
         buttonDoarSangue = findViewById(R.id.botaoDoeSangue)
+        buttonPerfil = findViewById(R.id.botaoPerfil)
 
 
         buttonLogout.setOnClickListener(this)
+        buttonHome.setOnClickListener(this)
         buttonDoarSangue.setOnClickListener(this)
+        buttonPerfil.setOnClickListener(this)
 
         carregarDadosUsuario() // Carregar os dados do usuário ao iniciar a atividade
     }
@@ -82,7 +92,9 @@ class UsuariosActivity : AppCompatActivity(), View.OnClickListener {
 
                         textNomeUsuario.text = nome
                         textTipoSanguineo.text = tipoSanguineo
-                        textDataNascimento.text = dataNascimento
+                        textDataNascimento.text = calcularIdade(dataNascimento.toString())
+
+
                         textCidadeUf.text = cidadeUf
 
                         // Carregar a imagem do URL usando Glide
@@ -108,9 +120,21 @@ class UsuariosActivity : AppCompatActivity(), View.OnClickListener {
             R.id.buttonLogout -> {
                 logout()
             }
-            R.id.botaoDoeSangue ->{
+
+            R.id.botaoHome -> {
                 val intent = Intent(this, ReceptoresActivity::class.java)
                 startActivity(intent)
+            }
+
+            R.id.botaoDoeSangue -> {
+                val intent = Intent(this, AgendamentoActivity::class.java)
+                startActivity(intent)
+            }
+
+            R.id.botaoPerfil -> {
+                val intent = Intent(this, UsuariosActivity::class.java)
+                startActivity(intent)
+
             }
         }
     }
@@ -121,5 +145,36 @@ class UsuariosActivity : AppCompatActivity(), View.OnClickListener {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish() // Finaliza a MainActivity
+    }
+
+    // Função para calcular idade com base na data de nascimento (exemplo)
+    private fun calcularIdade(dataNascimento: String): String {
+        return try {
+            // Definindo o formato da data
+            val format = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+            // Convertendo a string para um objeto Date
+            val birthDate: Date = format.parse(dataNascimento) ?: return "N/A"
+
+            // Obtendo a data atual
+            val currentCalendar = Calendar.getInstance()
+
+            // Calculando a idade
+            val birthCalendar = Calendar.getInstance().apply {
+                time = birthDate
+            }
+            var age = currentCalendar.get(Calendar.YEAR) - birthCalendar.get(Calendar.YEAR)
+
+            // Ajustando a idade caso o aniversário ainda não tenha ocorrido no ano atual
+            if (currentCalendar.get(Calendar.MONTH) < birthCalendar.get(Calendar.MONTH) ||
+                (currentCalendar.get(Calendar.MONTH) == birthCalendar.get(Calendar.MONTH) &&
+                        currentCalendar.get(Calendar.DAY_OF_MONTH) < birthCalendar.get(Calendar.DAY_OF_MONTH))
+            ) {
+                age--
+            }
+
+            age.toString() + " anos."
+        } catch (e: Exception) {
+            "N/A"
+        }
     }
 }
