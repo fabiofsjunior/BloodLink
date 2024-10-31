@@ -12,6 +12,7 @@ import com.example.bloodlink.R
 import com.example.bloodlink.classes.ItemDecoration
 import com.example.bloodlink.classes.Receptor
 import com.example.bloodlink.classes.ReceptorAdapter
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -22,6 +23,9 @@ class ReceptoresActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var recyclerView: RecyclerView
     private lateinit var receptorAdapter: ReceptorAdapter
     private lateinit var receptores: MutableList<Receptor>
+    private lateinit var bottomNavigationView: BottomNavigationView
+
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,6 +70,46 @@ class ReceptoresActivity : AppCompatActivity(), View.OnClickListener {
                 ).show()
             }
         })
+        // Configurar o BottomNavigationView
+        bottomNavigationView = findViewById(R.id.bottom_navigation)
+        bottomNavigationView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_home -> {
+                    if (this::class != ReceptoresActivity::class) {
+                        val intent = Intent(this, ReceptoresActivity::class.java)
+                        startActivity(intent)
+                    }
+                    true
+                }
+
+                R.id.nav_donation -> {
+                    if (this::class != AgendamentoActivity::class) {
+                        val intent = Intent(this, AgendamentoActivity::class.java)
+                        startActivity(intent)
+                    }
+                    true
+                }
+
+                R.id.nav_user -> {
+                    if (this::class != UsuariosActivity::class) {
+                        val intent = Intent(this, UsuariosActivity::class.java)
+                        startActivity(intent)
+                    }
+                    true
+                }
+
+                R.id.nav_location -> {
+                    if (this::class != LocalDoacaoActivity::class) {
+                        val intent = Intent(this, LocalDoacaoActivity::class.java)
+                        startActivity(intent)
+                    }
+                    true
+                }
+
+                else -> false
+            }
+
+        }
 
         val botaoVoltar: ImageButton = findViewById(R.id.btnVoltar)
         botaoVoltar.setOnClickListener(this)
@@ -78,6 +122,16 @@ class ReceptoresActivity : AppCompatActivity(), View.OnClickListener {
                 val homeMain = Intent(this, UsuariosActivity::class.java)
                 startActivity(homeMain)
             }
+        }
+    }
+    override fun onResume() {
+        super.onResume()
+        bottomNavigationView.selectedItemId = when (javaClass) {
+            ReceptoresActivity::class.java -> R.id.nav_home
+            AgendamentoActivity::class.java -> R.id.nav_donation
+            UsuariosActivity::class.java -> R.id.nav_user
+            LocalDoacaoActivity::class.java -> R.id.nav_location
+            else -> R.id.nav_home // Um fallback, se necessário
         }
     }
 }

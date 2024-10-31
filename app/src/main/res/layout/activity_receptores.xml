@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FADFA1"
     android:orientation="vertical"
-    android:padding="16dp">
+    >
 
     <ImageButton
+        android:padding="16dp"
         android:id="@+id/btnVoltar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -15,6 +17,7 @@
 
     <!-- Título do layout -->
     <TextView
+        android:padding="16dp"
         android:id="@+id/receptoresTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -24,10 +27,20 @@
 
     <!-- RecyclerView para exibir os receptores -->
     <androidx.recyclerview.widget.RecyclerView
+
         android:id="@+id/recyclerViewReceptores"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:layout_marginTop="16dp"
-        android:padding="8dp" />
+        android:padding="16dp" />
+
+    <!-- BottomNavigationView para navegação -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_margin="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:menu="@menu/bottom_nav_menu" />
 
 </LinearLayout>
