@@ -18,7 +18,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
-class ReceptoresActivity : AppCompatActivity(), View.OnClickListener {
+class ReceptoresActivity : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var receptorAdapter: ReceptorAdapter
@@ -111,19 +111,10 @@ class ReceptoresActivity : AppCompatActivity(), View.OnClickListener {
 
         }
 
-        val botaoVoltar: ImageButton = findViewById(R.id.btnVoltar)
-        botaoVoltar.setOnClickListener(this)
+
     }
 
 
-    override fun onClick(view: View) {
-        when (view.id) {
-            R.id.btnVoltar -> {
-                val homeMain = Intent(this, UsuariosActivity::class.java)
-                startActivity(homeMain)
-            }
-        }
-    }
     override fun onResume() {
         super.onResume()
         bottomNavigationView.selectedItemId = when (javaClass) {

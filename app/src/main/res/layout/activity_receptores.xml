@@ -7,27 +7,18 @@
     android:orientation="vertical"
     >
 
-    <ImageButton
-        android:padding="16dp"
-        android:id="@+id/btnVoltar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:src="@drawable/icone_voltar" />
-
     <!-- Título do layout -->
     <TextView
-        android:padding="16dp"
         android:id="@+id/receptoresTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Receptores"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:layout_marginTop="16dp"/>
 
     <!-- RecyclerView para exibir os receptores -->
     <androidx.recyclerview.widget.RecyclerView
-
         android:id="@+id/recyclerViewReceptores"
         android:layout_width="match_parent"
         android:layout_height="0dp"

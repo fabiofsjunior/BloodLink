@@ -1,134 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#C96868">
+    android:background="#C96868"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context=".activitys.LocalDoacaoActivity">
 
-    <ImageButton
-        android:id="@+id/buttonLogout"
+<!--    <ImageButton-->
+<!--        android:id="@+id/buttonLogout"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="end"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:background="@null"-->
+<!--        android:src="@drawable/icone_logout" />-->
+
+    <Button
+        android:id="@+id/btnSair"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@null"
-        android:src="@drawable/icone_logout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tvTitulo"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/lilita_one"
-        android:text="Carteirinha de Doação de Sangue"
-        android:textAlignment="center"
+        android:text="Sair"
+        android:layout_gravity="end"
+        android:layout_margin="0dp"
         android:textColor="@color/black"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/buttonLogout" />
+        />
 
     <ImageView
         android:id="@+id/fotoPerfil"
-        android:layout_width="291dp"
-        android:layout_height="308dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:layout_weight="58"
         android:background="@null"
         android:scaleType="centerCrop"
-        android:src="@drawable/icone_man"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvTitulo" />
+        android:src="@drawable/icone_man" />
 
-    <View
-        android:layout_width="0dp"
-        android:layout_height="2dp"
-        android:layout_marginVertical="16dp"
-        android:background="@android:color/darker_gray"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fotoPerfil" />
-
-    <TextView
-        android:id="@+id/textNomeUsuario"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="22dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:background="#FFF4EA"
-        android:fontFamily="@font/lilita_one"
-        android:text="Nome: Nome do Usuário"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fotoPerfil" />
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:padding="16dp">
 
-    <TextView
-        android:id="@+id/textDataNascimento"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="4dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:background="#FFF4EA"
-        android:fontFamily="@font/lilita_one"
-        android:text="Data de Nascimento: dd/MM/yyyy"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textNomeUsuario" />
+        <TextView
+            android:id="@+id/tvTitulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/lilita_one"
+            android:text="Dados do Usuário"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="30sp" />
 
-    <TextView
-        android:id="@+id/textCidadeUf"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="4dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:background="#FFF4EA"
-        android:fontFamily="@font/lilita_one"
-        android:text="Cidade: Cidade-UF"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textDataNascimento" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginVertical="8dp"
+            android:background="@android:color/darker_gray" />
 
-    <View
-        android:layout_width="393dp"
-        android:layout_height="2dp"
-        android:layout_marginTop="4dp"
-        android:background="@android:color/darker_gray"
-        app:layout_constraintTop_toBottomOf="@+id/textTipoSanguineo"
-        tools:ignore="MissingConstraints" />
+        <TextView
+            android:id="@+id/textNomeUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFF4EA"
+            android:fontFamily="@font/lilita_one"
+            android:text="Nome: Nome do Usuário"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
 
-    <TextView
-        android:id="@+id/textTipoSanguineo"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="4dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:background="#FFF4EA"
-        android:fontFamily="@font/lilita_one"
-        android:text="Tipo Sanguíneo: Tipo do Sangue"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textCidadeUf" />
+        <TextView
+            android:id="@+id/textDataNascimento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFF4EA"
+            android:fontFamily="@font/lilita_one"
+            android:text="Data de Nascimento: dd/MM/yyyy"
+            android:textColor="@color/black"
+            android:layout_marginVertical="2dp"
+            android:textSize="20sp" />
 
-    <!-- BottomNavigationView para navegação -->
+        <TextView
+            android:id="@+id/textCidadeUf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFF4EA"
+            android:fontFamily="@font/lilita_one"
+            android:text="Cidade: Cidade-UF"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/textTipoSanguineo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFF4EA"
+            android:fontFamily="@font/lilita_one"
+            android:text="Tipo Sanguíneo: Tipo do Sangue"
+            android:textColor="@color/black"
+            android:layout_marginVertical="2dp"
+            android:textSize="20sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginVertical="8dp"
+            android:background="@android:color/darker_gray" />
+    </LinearLayout>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_gravity="bottom"
         app:menu="@menu/bottom_nav_menu" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

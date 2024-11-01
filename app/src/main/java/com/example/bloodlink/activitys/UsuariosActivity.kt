@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
@@ -34,7 +35,7 @@ class UsuariosActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var textTipoSanguineo: TextView
     private lateinit var textDataNascimento: TextView
     private lateinit var textCidadeUf: TextView
-    private lateinit var buttonLogout: ImageButton
+    private lateinit var buttonLogout: Button
     private lateinit var bottomNavigationView: BottomNavigationView
 
     @SuppressLint("MissingInflatedId")
@@ -57,7 +58,7 @@ class UsuariosActivity : AppCompatActivity(), View.OnClickListener {
         textTipoSanguineo = findViewById(R.id.textTipoSanguineo)
         textDataNascimento = findViewById(R.id.textDataNascimento)
         textCidadeUf = findViewById(R.id.textCidadeUf)
-        buttonLogout = findViewById<ImageButton>(R.id.buttonLogout)
+        buttonLogout = findViewById<Button>(R.id.btnSair)
 
         // Configurar o BottomNavigationView
         bottomNavigationView = findViewById(R.id.bottom_navigation)
@@ -104,6 +105,20 @@ class UsuariosActivity : AppCompatActivity(), View.OnClickListener {
         carregarDadosUsuario()
     }
 
+    override fun onClick(view: View) {
+        when (view.id) {
+            R.id.btnSair -> logout()
+        }
+    }
+
+    private fun logout() {
+        auth.signOut()
+        Toast.makeText(this, "Logout realizado com sucesso", Toast.LENGTH_SHORT).show()
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
     private fun carregarDadosUsuario() {
         val userId = auth.currentUser?.uid
         if (userId != null) {
@@ -145,19 +160,6 @@ class UsuariosActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    override fun onClick(view: View) {
-        when (view.id) {
-            R.id.buttonLogout -> logout()
-        }
-    }
-
-    private fun logout() {
-        auth.signOut()
-        Toast.makeText(this, "Logout realizado com sucesso", Toast.LENGTH_SHORT).show()
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
-        finish()
-    }
 
     private fun calcularIdade(dataNascimento: String): String {
         return try {
@@ -179,6 +181,7 @@ class UsuariosActivity : AppCompatActivity(), View.OnClickListener {
             "N/A"
         }
     }
+
     override fun onResume() {
         super.onResume()
         bottomNavigationView.selectedItemId = when (javaClass) {
