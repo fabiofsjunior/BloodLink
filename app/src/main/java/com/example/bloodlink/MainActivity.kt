@@ -11,28 +11,20 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.bloodlink.activitys.LoginActivity
-import com.example.bloodlink.activitys.ReceptoresActivity
-import com.example.bloodlink.classes.Receptor
-import com.google.firebase.database.FirebaseDatabase
+import com.example.bloodlink.activitys.UsuariosActivity
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
-    private lateinit var textView: TextView // Declare o TextView
+    private lateinit var textView: TextView
 
+    val auth = FirebaseAuth.getInstance()
+    val currentUser = auth.currentUser
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
-        // Inicializar o Firebase Database
-        val database = FirebaseDatabase.getInstance()
-        val myRef = database.getReference("mensagem")
-
-        // Escrever dados no Realtime Database
-        myRef.setValue("Olá, Firebase!")
-
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
-        // Alterar este ID para o ID do seu TextView no layout
         textView = findViewById(R.id.tapToLogin)
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -41,43 +33,34 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             insets
         }
 
-        // Animação de aparecer
+        // Configs animação
         val fadeInAnimation = AnimationUtils.loadAnimation(this, R.anim.fade_in)
-        // Animação de desaparecer
         val fadeOutAnimation = AnimationUtils.loadAnimation(this, R.anim.fade_out)
 
-        // Configurar animações para serem executadas em sequência
         fadeInAnimation.setAnimationListener(object : Animation.AnimationListener {
             override fun onAnimationStart(animation: Animation?) {
-                // Código a ser executado quando a animação começa (opcional)
             }
 
             override fun onAnimationEnd(animation: Animation?) {
-                // Inicia a animação de desaparecer quando a animação de aparecer termina
                 textView.startAnimation(fadeOutAnimation)
             }
 
             override fun onAnimationRepeat(animation: Animation?) {
-                // Não é necessário implementar
             }
         })
 
         fadeOutAnimation.setAnimationListener(object : Animation.AnimationListener {
             override fun onAnimationStart(animation: Animation?) {
-                // Código a ser executado quando a animação começa (opcional)
             }
 
             override fun onAnimationEnd(animation: Animation?) {
-                // Inicia a animação de aparecer quando a animação de desaparecer termina
                 textView.startAnimation(fadeInAnimation)
             }
 
             override fun onAnimationRepeat(animation: Animation?) {
-                // Não é necessário implementar
             }
         })
 
-        // Inicia a animação de aparecer
         textView.startAnimation(fadeInAnimation)
 
         var tapToLogin: TextView = findViewById(R.id.tapToLogin)
@@ -86,9 +69,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(view: View) {
-        val login = Intent(this, LoginActivity::class.java)
-        startActivity(login)
+        if (currentUser != null) {
+            val email = currentUser.email
+            val logado = Intent(this, UsuariosActivity::class.java)
+            startActivity(logado)
+        } else {
+            val login = Intent(this, LoginActivity::class.java)
+            startActivity(login)
+        }
     }
-
 
 }
