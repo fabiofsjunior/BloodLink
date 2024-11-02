@@ -22,6 +22,8 @@ class ReceptoresActivity : AppCompatActivity() {
     private lateinit var receptorAdapter: ReceptorAdapter
     private lateinit var receptores: MutableList<Receptor>
     private lateinit var bottomNavigationView: BottomNavigationView
+    private lateinit var userTipoSanguineo: String
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,7 +46,7 @@ class ReceptoresActivity : AppCompatActivity() {
         receptorAdapter = ReceptorAdapter(receptores)
         recyclerView.adapter = receptorAdapter
 
-        val userTipoSanguineo = intent.getStringExtra("TIPO_SANGUINEO").toString()
+        userTipoSanguineo = intent.getStringExtra("TIPO_SANGUINEO").toString()
 
         val database = FirebaseDatabase.getInstance().getReference("Receptores")
 

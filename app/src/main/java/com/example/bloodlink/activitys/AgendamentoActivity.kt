@@ -26,6 +26,8 @@ class AgendamentoActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var dataNascimentoTextView: TextView
     private lateinit var motivoDoacaoTextView: TextView
     private lateinit var fotoImageView: ImageView
+    private lateinit var userTipoSanguineo : String
+
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,6 +47,9 @@ class AgendamentoActivity : AppCompatActivity(), View.OnClickListener {
         dataNascimentoTextView = findViewById(R.id.textViewDataNascimento)
         motivoDoacaoTextView = findViewById(R.id.textViewMotivoDoacao)
         fotoImageView = findViewById(R.id.imageViewFoto)
+
+        userTipoSanguineo = intent.getStringExtra("TIPO_SANGUINEO").toString()
+
 
         val receptorNome = intent.getStringExtra("NOME")
         val receptorFatorSanguineo = intent.getStringExtra("FACTOR_SANGUINEO")
@@ -76,11 +81,19 @@ class AgendamentoActivity : AppCompatActivity(), View.OnClickListener {
         when (view.id) {
             R.id.btnCancelar -> {
                 val intent = Intent(this, ReceptoresActivity::class.java)
+                intent.putExtra(
+                    "TIPO_SANGUINEO",
+                    userTipoSanguineo
+                )
                 startActivity(intent)
             }
 
             R.id.btnConfirmar -> {
                 val intent = Intent(this, LocalDoacaoActivity::class.java)
+                intent.putExtra(
+                    "TIPO_SANGUINEO",
+                    userTipoSanguineo
+                )
                 startActivity(intent)
             }
         }
