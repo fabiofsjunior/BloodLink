@@ -2,15 +2,24 @@ package com.example.bloodlink.activitys
 
 import android.content.Intent
 import android.os.Bundle
+import android.preference.PreferenceManager
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.bloodlink.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import org.osmdroid.config.Configuration
+import org.osmdroid.tileprovider.tilesource.TileSourceFactory
+import org.osmdroid.util.GeoPoint
+import org.osmdroid.views.MapView
+import org.osmdroid.views.overlay.Marker
 
 class LocalDoacaoActivity : AppCompatActivity() {
     private lateinit var bottomNavigationView: BottomNavigationView
+
+    private lateinit var mapView: MapView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,6 +31,30 @@ class LocalDoacaoActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        Configuration.getInstance().load(this, PreferenceManager.getDefaultSharedPreferences(this))
+
+        setContentView(R.layout.activity_local_doacao)
+
+        mapView = findViewById(R.id.mapView)
+        mapView.setTileSource(TileSourceFactory.MAPNIK)
+
+        mapView.setMultiTouchControls(true)
+
+        val recifeLocation = GeoPoint(-8.0476, -34.8770) // Latitude e Longitude
+        mapView.controller.setZoom(20.0) // Defina o nível de zoom desejado
+        mapView.controller.setCenter(recifeLocation) // Centraliza o mapa nas coordenadas
+
+        // Adiciona um marcador no mapa
+        val marker = Marker(mapView)
+        marker.position = recifeLocation
+        marker.title = "Recife"
+        marker.icon = resources.getDrawable(R.drawable.marker_icon) // Substitua pelo seu ícone de marcador
+        mapView.overlays.add(marker)
+
+        // Atualiza o mapa
+        mapView.invalidate()
+
 
         bottomNavigationView = findViewById(R.id.bottom_navigation)
 
