@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -37,6 +36,7 @@ class UsuariosActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var textCidadeUf: TextView
     private lateinit var buttonLogout: Button
     private lateinit var bottomNavigationView: BottomNavigationView
+    private lateinit var tipoSanguineo: String // Variável para armazenar o tipo sanguíneo do Usuário
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,15 +52,14 @@ class UsuariosActivity : AppCompatActivity(), View.OnClickListener {
 
         auth = FirebaseAuth.getInstance()
 
-        // Referências para os componentes da UI
         fotoPerfil = findViewById(R.id.fotoPerfil)
         textNomeUsuario = findViewById(R.id.textNomeUsuario)
         textTipoSanguineo = findViewById(R.id.textTipoSanguineo)
         textDataNascimento = findViewById(R.id.textDataNascimento)
         textCidadeUf = findViewById(R.id.textCidadeUf)
         buttonLogout = findViewById<Button>(R.id.btnSair)
+        tipoSanguineo = textTipoSanguineo.toString()
 
-        // Configurar o BottomNavigationView
         bottomNavigationView = findViewById(R.id.bottom_navigation)
         bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
@@ -73,8 +72,12 @@ class UsuariosActivity : AppCompatActivity(), View.OnClickListener {
                 }
 
                 R.id.nav_donation -> {
-                    if (this::class != AgendamentoActivity::class) {
-                        val intent = Intent(this, AgendamentoActivity::class.java)
+                    if (this::class != DoeAgoraActivity::class) {
+                        val intent = Intent(this, DoeAgoraActivity::class.java)
+                        intent.putExtra(
+                            "TIPO_SANGUINEO",
+                            tipoSanguineo
+                        )
                         startActivity(intent)
                     }
                     true
@@ -98,7 +101,6 @@ class UsuariosActivity : AppCompatActivity(), View.OnClickListener {
 
                 else -> false
             }
-
         }
 
         buttonLogout.setOnClickListener(this)
@@ -129,8 +131,9 @@ class UsuariosActivity : AppCompatActivity(), View.OnClickListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.exists()) {
                         val nome = snapshot.child("nome").getValue(String::class.java)
-                        val tipoSanguineo =
+                        tipoSanguineo =
                             snapshot.child("tipoSanguineo").getValue(String::class.java)
+                                .toString() // Armazena o tipo sanguíneo
                         val dataNascimento =
                             snapshot.child("dataNascimento").getValue(String::class.java)
                         val cidadeUf = snapshot.child("cidadeUf").getValue(String::class.java)
@@ -142,7 +145,6 @@ class UsuariosActivity : AppCompatActivity(), View.OnClickListener {
                         textDataNascimento.text = calcularIdade(dataNascimento.toString())
                         textCidadeUf.text = cidadeUf
 
-                        // Carregar a imagem do URL usando Glide
                         Glide.with(this@UsuariosActivity)
                             .load(fotoPerfilUrl)
                             .into(fotoPerfil)
@@ -159,7 +161,6 @@ class UsuariosActivity : AppCompatActivity(), View.OnClickListener {
             })
         }
     }
-
 
     private fun calcularIdade(dataNascimento: String): String {
         return try {

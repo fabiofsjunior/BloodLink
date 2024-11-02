@@ -2,8 +2,6 @@ package com.example.bloodlink.activitys
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -26,8 +24,6 @@ class ReceptoresActivity : AppCompatActivity() {
     private lateinit var bottomNavigationView: BottomNavigationView
 
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_receptores)
@@ -35,13 +31,12 @@ class ReceptoresActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.recyclerViewReceptores)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        // Adiciona o ItemDecoration ao RecyclerView
         val spacingInPixels = resources.getDimensionPixelSize(R.dimen.recycler_view_item_spacing)
         recyclerView.addItemDecoration(
             ItemDecoration(
                 context = this,
                 spacing = spacingInPixels,
-                borderWidth = resources.getDimension(R.dimen.border_width) // Espessura da borda
+                borderWidth = resources.getDimension(R.dimen.border_width)
             )
         )
 
@@ -51,7 +46,6 @@ class ReceptoresActivity : AppCompatActivity() {
 
         val database = FirebaseDatabase.getInstance().getReference("Receptores")
 
-        // Carregar dados do Firebase
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 receptores.clear()
@@ -70,7 +64,7 @@ class ReceptoresActivity : AppCompatActivity() {
                 ).show()
             }
         })
-        // Configurar o BottomNavigationView
+
         bottomNavigationView = findViewById(R.id.bottom_navigation)
         bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
@@ -114,7 +108,6 @@ class ReceptoresActivity : AppCompatActivity() {
 
     }
 
-
     override fun onResume() {
         super.onResume()
         bottomNavigationView.selectedItemId = when (javaClass) {
@@ -122,7 +115,7 @@ class ReceptoresActivity : AppCompatActivity() {
             AgendamentoActivity::class.java -> R.id.nav_donation
             UsuariosActivity::class.java -> R.id.nav_user
             LocalDoacaoActivity::class.java -> R.id.nav_location
-            else -> R.id.nav_home // Um fallback, se necessário
+            else -> R.id.nav_home
         }
     }
 }
