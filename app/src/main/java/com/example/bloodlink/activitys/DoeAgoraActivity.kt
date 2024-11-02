@@ -8,7 +8,6 @@ import android.view.View
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -153,28 +152,52 @@ class DoeAgoraActivity : AppCompatActivity(), View.OnClickListener {
                 receptorAdapter.notifyDataSetChanged()
                 val usuarios = intent.getStringExtra("usuarios") ?: ""
 
-                for (receptor in receptores) {
-                    if (receptor.fatorSanguineoRH == fatorSanguineoUsuario) {
-                        Log.d("Encontrado", "Receptor encontrado: ${receptor.nome}")
-                        nomeTextView.text = receptor.nome
-                        cidadeUfTextView.text = receptor.cidadeUF
-                        fatorSanguineoTextView.text = receptor.fatorSanguineoRH
-                        dataNascimentoTextView.text =
-                            calcularIdade(receptor.dataNascimento.toString())
-                        motivoDoacaoTextView.text = receptor.motivoDoacao
+//                for (receptor in receptores) {
+//                    if (receptor.fatorSanguineoRH == fatorSanguineoUsuario) {
+//                        Log.d("Encontrado", "Receptor encontrado: ${receptor.nome}")
+//                        nomeTextView.text = receptor.nome
+//                        cidadeUfTextView.text = receptor.cidadeUF
+//                        fatorSanguineoTextView.text = receptor.fatorSanguineoRH
+//                        dataNascimentoTextView.text =
+//                            calcularIdade(receptor.dataNascimento.toString())
+//                        motivoDoacaoTextView.text = receptor.motivoDoacao
+//
+//
+//                        receptor.fotoUrl?.let { fotoUrl ->
+//                            Glide.with(this@DoeAgoraActivity)
+//                                .load(fotoUrl)
+//                                .placeholder(R.drawable.icone_foto)
+//                                .error(R.drawable.icone_foto)
+//                                .into(fotoImageView)
+//                        }
+//
+//                        break
+//                    }
+//                }
 
+                val receptoresCompatíveis =
+                    receptores.filter { it.fatorSanguineoRH == fatorSanguineoUsuario }
+                val receptorAleatorio = receptoresCompatíveis.randomOrNull()
 
-                        receptor.fotoUrl?.let { fotoUrl ->
-                            Glide.with(this@DoeAgoraActivity)
-                                .load(fotoUrl)
-                                .placeholder(R.drawable.icone_foto)
-                                .error(R.drawable.icone_foto)
-                                .into(fotoImageView)
-                        }
+                receptorAleatorio?.let { receptor ->
+                    Log.d("Encontrado", "Receptor encontrado: ${receptor.nome}")
+                    nomeTextView.text = receptor.nome
+                    cidadeUfTextView.text = receptor.cidadeUF
+                    fatorSanguineoTextView.text = receptor.fatorSanguineoRH
+                    dataNascimentoTextView.text = calcularIdade(receptor.dataNascimento.toString())
+                    motivoDoacaoTextView.text = receptor.motivoDoacao
 
-                        break
+                    receptor.fotoUrl?.let { fotoUrl ->
+                        Glide.with(this@DoeAgoraActivity)
+                            .load(fotoUrl)
+                            .placeholder(R.drawable.icone_foto)
+                            .error(R.drawable.icone_foto)
+                            .into(fotoImageView)
                     }
+                } ?: run {
+                    nomeTextView.text = "Nenhum receptor compatível encontrado."
                 }
+
 
             }
 

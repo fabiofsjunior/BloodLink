@@ -10,25 +10,6 @@
     android:orientation="vertical"
     tools:context=".activitys.LocalDoacaoActivity">
 
-<!--    <ImageButton-->
-<!--        android:id="@+id/buttonLogout"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_gravity="end"-->
-<!--        android:layout_marginTop="16dp"-->
-<!--        android:background="@null"-->
-<!--        android:src="@drawable/icone_logout" />-->
-
-    <Button
-        android:id="@+id/btnSair"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sair"
-        android:layout_gravity="end"
-        android:layout_margin="0dp"
-        android:textColor="@color/black"
-        />
-
     <ImageView
         android:id="@+id/fotoPerfil"
         android:layout_width="match_parent"
@@ -40,11 +21,11 @@
         android:src="@drawable/icone_man" />
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:layout_gravity="center"
+        android:layout_weight="1"
+        android:orientation="vertical"
         android:padding="16dp">
 
         <TextView
@@ -65,6 +46,17 @@
             android:background="@android:color/darker_gray" />
 
         <TextView
+            android:id="@+id/textUserId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFF4EA"
+            android:fontFamily="@font/lilita_one"
+            android:text="Nome: Nome do Usuário"
+            android:textColor="@color/black"
+            android:layout_marginVertical="2dp"
+            android:textSize="20sp" />
+
+        <TextView
             android:id="@+id/textNomeUsuario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -78,11 +70,11 @@
             android:id="@+id/textDataNascimento"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="2dp"
             android:background="#FFF4EA"
             android:fontFamily="@font/lilita_one"
             android:text="Data de Nascimento: dd/MM/yyyy"
             android:textColor="@color/black"
-            android:layout_marginVertical="2dp"
             android:textSize="20sp" />
 
         <TextView
@@ -99,11 +91,11 @@
             android:id="@+id/textTipoSanguineo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="2dp"
             android:background="#FFF4EA"
             android:fontFamily="@font/lilita_one"
             android:text="Tipo Sanguíneo: Tipo do Sangue"
             android:textColor="@color/black"
-            android:layout_marginVertical="2dp"
             android:textSize="20sp" />
 
         <View
@@ -112,6 +104,15 @@
             android:layout_marginVertical="8dp"
             android:background="@android:color/darker_gray" />
     </LinearLayout>
+    <Button
+        android:id="@+id/btnSair"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        android:layout_gravity="end"
+        android:layout_margin="0dp"
+        android:padding="0dp"
+        android:text="Sair"
+        android:textColor="@color/black" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"

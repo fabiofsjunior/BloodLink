@@ -30,6 +30,7 @@ class UsuariosActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var fotoPerfil: ImageView
+    private lateinit var textUserId: TextView
     private lateinit var textNomeUsuario: TextView
     private lateinit var textTipoSanguineo: TextView
     private lateinit var textDataNascimento: TextView
@@ -53,6 +54,7 @@ class UsuariosActivity : AppCompatActivity(), View.OnClickListener {
         auth = FirebaseAuth.getInstance()
 
         fotoPerfil = findViewById(R.id.fotoPerfil)
+        textUserId = findViewById(R.id.textUserId)
         textNomeUsuario = findViewById(R.id.textNomeUsuario)
         textTipoSanguineo = findViewById(R.id.textTipoSanguineo)
         textDataNascimento = findViewById(R.id.textDataNascimento)
@@ -130,6 +132,9 @@ class UsuariosActivity : AppCompatActivity(), View.OnClickListener {
             reference.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.exists()) {
+                        val userId = snapshot.key
+                        val idUsuarioSplit = userId?.split(" ")
+                        val codigoUsuario = idUsuarioSplit?.get(0)?.substring(0,10)
                         val nome = snapshot.child("nome").getValue(String::class.java)
                         tipoSanguineo =
                             snapshot.child("tipoSanguineo").getValue(String::class.java)
@@ -140,10 +145,11 @@ class UsuariosActivity : AppCompatActivity(), View.OnClickListener {
                         val fotoPerfilUrl =
                             snapshot.child("fotoPerfil").getValue(String::class.java)
 
-                        textNomeUsuario.text = nome
-                        textTipoSanguineo.text = tipoSanguineo
-                        textDataNascimento.text = calcularIdade(dataNascimento.toString())
-                        textCidadeUf.text = cidadeUf
+                        textUserId.text = "Id: " + codigoUsuario
+                        textNomeUsuario.text = "Nome: " + nome
+                        textTipoSanguineo.text = "Fator RH: " + tipoSanguineo
+                        textDataNascimento.text = "Idade: " + calcularIdade(dataNascimento.toString())
+                        textCidadeUf.text = "Cidade/UF: " + cidadeUf
 
                         Glide.with(this@UsuariosActivity)
                             .load(fotoPerfilUrl)
