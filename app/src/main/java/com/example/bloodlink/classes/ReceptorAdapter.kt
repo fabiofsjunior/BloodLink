@@ -27,12 +27,9 @@ class ReceptorAdapter(private val receptores: List<Receptor>) :
         val motivoDoacao: TextView = view.findViewById(R.id.itemMotivoDoacao)
 
         init {
-            // Adiciona o listener de clique ao item
             view.setOnClickListener {
-                // Obtém a posição do item clicado
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
-                    // Inicia a nova Activity, passando dados se necessário
                     val contexto = view.context
                     val receptor = receptores[position]
                     val intent = Intent(contexto, AgendamentoActivity::class.java).apply {
@@ -42,7 +39,7 @@ class ReceptorAdapter(private val receptores: List<Receptor>) :
                         putExtra("CIDADE_UF", receptor.cidadeUF)
                         putExtra("DATA_NASCIMENTO", receptor.dataNascimento)
                         putExtra("MOTIVO_DOACAO", receptor.motivoDoacao)
-                        putExtra("FOTO_URL", receptor.fotoUrl) // Exemplo de passagem de foto
+                        putExtra("FOTO_URL", receptor.fotoUrl)
                     }
                     contexto.startActivity(intent)
                 }
@@ -67,31 +64,25 @@ class ReceptorAdapter(private val receptores: List<Receptor>) :
         // Carregar imagem com Glide
         Glide.with(holder.foto.context)
             .load(receptor.fotoUrl)
-            .placeholder(R.drawable.icone_foto) // Imagem de placeholder enquanto carrega
-            .error(R.drawable.icone_foto) // Imagem em caso de erro no carregamento
+            .placeholder(R.drawable.icone_foto)
+            .error(R.drawable.icone_foto)
             .into(holder.foto)
     }
 
     override fun getItemCount(): Int = receptores.size
 
-    // Função para calcular idade com base na data de nascimento (exemplo)
+
     private fun calcularIdade(dataNascimento: String): String {
         return try {
-            // Definindo o formato da data
             val format = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-            // Convertendo a string para um objeto Date
             val birthDate: Date = format.parse(dataNascimento) ?: return "N/A"
-
-            // Obtendo a data atual
             val currentCalendar = Calendar.getInstance()
 
-            // Calculando a idade
             val birthCalendar = Calendar.getInstance().apply {
                 time = birthDate
             }
             var age = currentCalendar.get(Calendar.YEAR) - birthCalendar.get(Calendar.YEAR)
 
-            // Ajustando a idade caso o aniversário ainda não tenha ocorrido no ano atual
             if (currentCalendar.get(Calendar.MONTH) < birthCalendar.get(Calendar.MONTH) ||
                 (currentCalendar.get(Calendar.MONTH) == birthCalendar.get(Calendar.MONTH) &&
                         currentCalendar.get(Calendar.DAY_OF_MONTH) < birthCalendar.get(Calendar.DAY_OF_MONTH))
