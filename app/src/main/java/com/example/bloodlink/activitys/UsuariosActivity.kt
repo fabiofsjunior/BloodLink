@@ -68,6 +68,10 @@ class UsuariosActivity : AppCompatActivity(), View.OnClickListener {
                 R.id.nav_home -> {
                     if (this::class != ReceptoresActivity::class) {
                         val intent = Intent(this, ReceptoresActivity::class.java)
+                        intent.putExtra(
+                            "TIPO_SANGUINEO",
+                            tipoSanguineo
+                        )
                         startActivity(intent)
                     }
                     true
@@ -96,6 +100,7 @@ class UsuariosActivity : AppCompatActivity(), View.OnClickListener {
                 R.id.nav_location -> {
                     if (this::class != LocalDoacaoActivity::class) {
                         val intent = Intent(this, LocalDoacaoActivity::class.java)
+                        intent.putExtra("cidadeUf", textCidadeUf.text.toString())
                         startActivity(intent)
                     }
                     true

@@ -35,6 +35,7 @@ class DoeAgoraActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var fotoImageView: ImageView
     private lateinit var receptores: MutableList<Receptor>
     private lateinit var receptorAdapter: ReceptorAdapter
+    private lateinit var userTipoSanguineo : String
 
 
     @SuppressLint("MissingInflatedId")
@@ -59,6 +60,9 @@ class DoeAgoraActivity : AppCompatActivity(), View.OnClickListener {
 
         receptores = mutableListOf()
         receptorAdapter = ReceptorAdapter(receptores)
+
+        userTipoSanguineo = intent.getStringExtra("TIPO_SANGUINEO").toString()
+
 
 
         // Recebendo os dados passados
@@ -89,7 +93,7 @@ class DoeAgoraActivity : AppCompatActivity(), View.OnClickListener {
         botaoConfirmarAgendamento.setOnClickListener(this)
 
 
-        val userTipoSanguineo = intent.getStringExtra("TIPO_SANGUINEO").toString()
+
         buscarCompatibilidade(userTipoSanguineo)
 
     }
@@ -98,11 +102,19 @@ class DoeAgoraActivity : AppCompatActivity(), View.OnClickListener {
         when (view.id) {
             R.id.btnCancelar -> {
                 val intent = Intent(this, ReceptoresActivity::class.java)
+                intent.putExtra(
+                    "TIPO_SANGUINEO",
+                    userTipoSanguineo
+                )
                 startActivity(intent)
             }
 
             R.id.btnConfirmar -> {
                 val intent = Intent(this, LocalDoacaoActivity::class.java)
+                intent.putExtra(
+                    "TIPO_SANGUINEO",
+                    userTipoSanguineo
+                )
                 startActivity(intent)
             }
         }
@@ -150,31 +162,6 @@ class DoeAgoraActivity : AppCompatActivity(), View.OnClickListener {
                     receptor?.let { receptores.add(it) }
                 }
                 receptorAdapter.notifyDataSetChanged()
-                val usuarios = intent.getStringExtra("usuarios") ?: ""
-
-//                for (receptor in receptores) {
-//                    if (receptor.fatorSanguineoRH == fatorSanguineoUsuario) {
-//                        Log.d("Encontrado", "Receptor encontrado: ${receptor.nome}")
-//                        nomeTextView.text = receptor.nome
-//                        cidadeUfTextView.text = receptor.cidadeUF
-//                        fatorSanguineoTextView.text = receptor.fatorSanguineoRH
-//                        dataNascimentoTextView.text =
-//                            calcularIdade(receptor.dataNascimento.toString())
-//                        motivoDoacaoTextView.text = receptor.motivoDoacao
-//
-//
-//                        receptor.fotoUrl?.let { fotoUrl ->
-//                            Glide.with(this@DoeAgoraActivity)
-//                                .load(fotoUrl)
-//                                .placeholder(R.drawable.icone_foto)
-//                                .error(R.drawable.icone_foto)
-//                                .into(fotoImageView)
-//                        }
-//
-//                        break
-//                    }
-//                }
-
                 val receptoresCompatíveis =
                     receptores.filter { it.fatorSanguineoRH == fatorSanguineoUsuario }
                 val receptorAleatorio = receptoresCompatíveis.randomOrNull()

@@ -44,6 +44,8 @@ class ReceptoresActivity : AppCompatActivity() {
         receptorAdapter = ReceptorAdapter(receptores)
         recyclerView.adapter = receptorAdapter
 
+        val userTipoSanguineo = intent.getStringExtra("TIPO_SANGUINEO").toString()
+
         val database = FirebaseDatabase.getInstance().getReference("Receptores")
 
         database.addValueEventListener(object : ValueEventListener {
@@ -78,7 +80,11 @@ class ReceptoresActivity : AppCompatActivity() {
 
                 R.id.nav_donation -> {
                     if (this::class != AgendamentoActivity::class) {
-                        val intent = Intent(this, AgendamentoActivity::class.java)
+                        val intent = Intent(this, DoeAgoraActivity::class.java)
+                        intent.putExtra(
+                            "TIPO_SANGUINEO",
+                            userTipoSanguineo
+                        )
                         startActivity(intent)
                     }
                     true
