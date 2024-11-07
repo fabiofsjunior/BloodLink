@@ -41,15 +41,15 @@ class LocalDoacaoActivity : AppCompatActivity() {
 
         mapView.setMultiTouchControls(true)
 
-        val recifeLocation = GeoPoint(-8.0476, -34.8770) // Latitude e Longitude
-        mapView.controller.setZoom(20.0) // Defina o nível de zoom desejado
-        mapView.controller.setCenter(recifeLocation) // Centraliza o mapa nas coordenadas
+        val recifeLocation = GeoPoint(-8.0476, -34.8770)
+        mapView.controller.setZoom(20.0)
+        mapView.controller.setCenter(recifeLocation)
 
         // Adiciona um marcador no mapa
         val marker = Marker(mapView)
         marker.position = recifeLocation
         marker.title = "Recife"
-        marker.icon = resources.getDrawable(R.drawable.marker_icon) // Substitua pelo seu ícone de marcador
+        marker.icon = resources.getDrawable(R.drawable.marker_icon)
         mapView.overlays.add(marker)
 
         // Atualiza o mapa
@@ -69,7 +69,7 @@ class LocalDoacaoActivity : AppCompatActivity() {
 
                 R.id.nav_donation -> {
                     if (javaClass != AgendamentoActivity::class.java) {
-                        startActivity(Intent(this, AgendamentoActivity::class.java))
+                        startActivity(Intent(this, DoeAgoraActivity::class.java))
                     }
                     true
                 }
@@ -97,10 +97,10 @@ class LocalDoacaoActivity : AppCompatActivity() {
         super.onResume()
         bottomNavigationView.selectedItemId = when (javaClass) {
             ReceptoresActivity::class.java -> R.id.nav_home
-            AgendamentoActivity::class.java -> R.id.nav_donation
+            DoeAgoraActivity::class.java -> R.id.nav_donation
             UsuariosActivity::class.java -> R.id.nav_user
             LocalDoacaoActivity::class.java -> R.id.nav_location
-            else -> R.id.nav_home // Um fallback, se necessário
+            else -> R.id.nav_home
         }
     }
 }

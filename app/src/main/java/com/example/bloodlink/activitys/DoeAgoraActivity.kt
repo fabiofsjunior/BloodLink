@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -16,6 +17,7 @@ import com.bumptech.glide.Glide
 import com.example.bloodlink.R
 import com.example.bloodlink.classes.Receptor
 import com.example.bloodlink.classes.ReceptorAdapter
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -35,7 +37,7 @@ class DoeAgoraActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var fotoImageView: ImageView
     private lateinit var receptores: MutableList<Receptor>
     private lateinit var receptorAdapter: ReceptorAdapter
-    private lateinit var userTipoSanguineo : String
+    private lateinit var userTipoSanguineo: String
 
 
     @SuppressLint("MissingInflatedId")
@@ -61,7 +63,6 @@ class DoeAgoraActivity : AppCompatActivity(), View.OnClickListener {
         receptorAdapter = ReceptorAdapter(receptores)
 
         userTipoSanguineo = intent.getStringExtra("TIPO_SANGUINEO").toString()
-
 
 
         val receptorNome = intent.getStringExtra("NOME")
@@ -90,8 +91,9 @@ class DoeAgoraActivity : AppCompatActivity(), View.OnClickListener {
         botaoConfirmarAgendamento.setOnClickListener(this)
 
 
+        carregarTipoSangueUsuario()
 
-        buscarCompatibilidade(userTipoSanguineo)
+//        buscarCompatibilidade(userTipoSanguineo)
 
     }
 
@@ -133,12 +135,60 @@ class DoeAgoraActivity : AppCompatActivity(), View.OnClickListener {
             ) {
                 age--
             }
-
             age.toString() + " anos."
         } catch (e: Exception) {
             "N/A"
         }
     }
+
+    private fun carregarTipoSangueUsuario() {
+        val auth: FirebaseAuth = FirebaseAuth.getInstance()
+        val userId = auth.currentUser?.uid
+
+        if (userId != null) {
+            val database = FirebaseDatabase.getInstance()
+            val reference = database.getReference("Usuarios").child(userId)
+
+            reference.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        val tipoSanguineo = snapshot.child("tipoSanguineo").getValue(String::class.java).orEmpty()
+                        val cidadeUf = snapshot.child("cidadeUf").getValue(String::class.java).orEmpty()
+                        val dataNascimento = snapshot.child("dataNascimento").getValue(String::class.java).orEmpty()
+                        val fatorSanguineoRh = snapshot.child("tipoSanguineo").getValue(String::class.java).orEmpty()
+                        val fotoPerfil = snapshot.child("fotoPerfil").getValue(String::class.java).orEmpty()
+                        val nome = snapshot.child("nome").getValue(String::class.java).orEmpty()
+                        val telefone = snapshot.child("celular").getValue(String::class.java).orEmpty()
+
+                        // Exibindo os valores no log para verificação
+                        Log.d("DadosUsuario", "Tipo Sanguíneo: $tipoSanguineo")
+                        Log.d("DadosUsuario", "Cidade_UF: $cidadeUf")
+                        Log.d("DadosUsuario", "Data de Nascimento: $dataNascimento")
+                        Log.d("DadosUsuario", "Fator Sanguíneo RH: $fatorSanguineoRh")
+                        Log.d("DadosUsuario", "Foto Perfil: $fotoPerfil")
+                        Log.d("DadosUsuario", "Nome: $nome")
+                        Log.d("DadosUsuario", "Telefone: $telefone")
+
+                        // Chama a função buscarCompatibilidade usando o tipo sanguíneo
+                        buscarCompatibilidade(tipoSanguineo)
+                    } else {
+                        Log.d("DadosUsuario", "Snapshot vazio para o usuário.")
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Toast.makeText(
+                        this@DoeAgoraActivity,
+                        "Erro ao carregar dados: ${error.message}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            })
+        } else {
+            Log.d("DadosUsuario", "Usuário não logado.")
+        }
+    }
+
 
     private fun buscarCompatibilidade(fatorSanguineoUsuario: String) {
         val database = FirebaseDatabase.getInstance().getReference("Receptores")
@@ -178,7 +228,6 @@ class DoeAgoraActivity : AppCompatActivity(), View.OnClickListener {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
                 Log.d("Deu ERROR", "LASCOU")
             }
 
