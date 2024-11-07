@@ -1,86 +1,65 @@
 {
-  "Olinda_PE": [
-    {
-      "Nome": "Hemocentro de Olinda",
-      "Endereco": "Rua de São Bento, 123, Olinda, PE",
-      "Telefone": "(81) 3212-3456"
-    },
-    {
-      "Nome": "Hospital Municipal de Olinda",
-      "Endereco": "Avenida Getúlio Vargas, 456, Olinda, PE",
-      "Telefone": "(81) 3322-9876"
-    }
-  ],
-  "Recife_PE": [
-    {
-      "Nome": "Hemocentro do Recife",
-      "Endereco": "Rua João Fernandes, 789, Recife, PE",
-      "Telefone": "(81) 3325-6789"
-    },
-    {
-      "Nome": "Hospital da Restauração",
-      "Endereco": "Avenida Conselheiro Rosa e Silva, 321, Recife, PE",
-      "Telefone": "(81) 3355-4321"
-    }
-  ],
-  "Paulista_PE": [
-    {
-      "Nome": "Hospital Paulistano",
-      "Endereco": "Rua do Comércio, 234, Paulista, PE",
-      "Telefone": "(81) 3423-8765"
-    },
-    {
-      "Nome": "Unidade de Saúde de Paulista",
-      "Endereco": "Avenida Prefeito Jorge Vieira, 567, Paulista, PE",
-      "Telefone": "(81) 3245-6789"
-    }
-  ],
-  "Jaboatao_dos_Guararapes_PE": [
-    {
-      "Nome": "Hospital Jaboatão",
-      "Endereco": "Rua Nova, 101, Jaboatão dos Guararapes, PE",
-      "Telefone": "(81) 3432-4567"
-    },
-    {
-      "Nome": "Centro de Hemoterapia",
-      "Endereco": "Avenida Olinda, 202, Jaboatão dos Guararapes, PE",
-      "Telefone": "(81) 3321-4567"
-    }
-  ],
-  "Cabo_de_Santo_Agostinho_PE": [
-    {
-      "Nome": "Hospital Municipal de Cabo",
-      "Endereco": "Avenida Santos Dumont, 303, Cabo de Santo Agostinho, PE",
-      "Telefone": "(81) 3332-7890"
-    },
-    {
-      "Nome": "Hemocentro do Cabo",
-      "Endereco": "Rua do Ouro, 404, Cabo de Santo Agostinho, PE",
-      "Telefone": "(81) 3356-7890"
-    }
-  ],
-  "Sao_Lourenco_da_Mata_PE": [
-    {
-      "Nome": "Hospital São Lourenço",
-      "Endereco": "Rua da Paz, 505, São Lourenço da Mata, PE",
-      "Telefone": "(81) 3213-4567"
-    },
-    {
-      "Nome": "Unidade de Coleta de Sangue",
-      "Endereco": "Avenida Getúlio Vargas, 606, São Lourenço da Mata, PE",
-      "Telefone": "(81) 3321-7890"
-    }
-  ],
-  "Igarassu_PE": [
-    {
-      "Nome": "Hospital de Igarassu",
-      "Endereco": "Rua da Liberdade, 707, Igarassu, PE",
-      "Telefone": "(81) 3432-3456"
-    },
-    {
-      "Nome": "Centro de Saúde de Igarassu",
-      "Endereco": "Avenida dos Cangurus, 808, Igarassu, PE",
-      "Telefone": "(81) 3355-9876"
-    }
-  ]
+  "CaboDeSantoAgostinho": {
+    "Nome": "Hemocentro Cabo de Santo Agostinho",
+    "Cidade_UF": "Cabo de Santo Agostinho - PE",
+    "Endereco": "Rua 1, Centro, Cabo de Santo Agostinho",
+    "Latitude": -8.2833,
+    "Longitude": -35.0325,
+    "Telefone": "(81) 1234-5678",
+    "HorarioFuncionamento": "Seg-Sex, 8h - 17h"
+  },
+  "Igarassu": {
+    "Nome": "Hemocentro Igarassu",
+    "Cidade_UF": "Igarassu - PE",
+    "Endereco": "Avenida dos Guararapes, 100, Igarassu",
+    "Latitude": -7.8281,
+    "Longitude": -34.9017,
+    "Telefone": "(81) 8765-4321",
+    "HorarioFuncionamento": "Seg-Sex, 9h - 18h"
+  },
+  "JaboataoDosGuararapes": {
+    "Nome": "Hemocentro Jaboatão dos Guararapes",
+    "Cidade_UF": "Jaboatão dos Guararapes - PE",
+    "Endereco": "Rua dos Navegantes, 45, Jaboatão Centro",
+    "Latitude": -8.1124,
+    "Longitude": -35.0147,
+    "Telefone": "(81) 2345-6789",
+    "HorarioFuncionamento": "Seg-Sex, 8h - 16h"
+  },
+  "Olinda": {
+    "Nome": "Hemocentro Olinda",
+    "Cidade_UF": "Olinda - PE",
+    "Endereco": "Praça do Carmo, 15, Olinda",
+    "Latitude": -7.9933,
+    "Longitude": -34.8418,
+    "Telefone": "(81) 9123-4567",
+    "HorarioFuncionamento": "Seg-Sex, 7h - 16h"
+  },
+  "Paulista": {
+    "Nome": "Hemocentro Paulista",
+    "Cidade_UF": "Paulista - PE",
+    "Endereco": "Avenida Brasil, 123, Paulista",
+    "Latitude": -7.9408,
+    "Longitude": -34.8731,
+    "Telefone": "(81) 7654-3210",
+    "HorarioFuncionamento": "Seg-Sex, 8h - 17h"
+  },
+  "Recife": {
+    "Nome": "Hemocentro Recife",
+    "Cidade_UF": "Recife - PE",
+    "Endereco": "Rua das Flores, 500, Boa Vista, Recife",
+    "Latitude": -8.0476,
+    "Longitude": -34.8770,
+    "Telefone": "(81) 9876-5432",
+    "HorarioFuncionamento": "Seg-Sex, 7h - 18h"
+  },
+  "SaoLourenco": {
+    "Nome": "Hemocentro São Lourenço",
+    "Cidade_UF": "São Lourenço - PE",
+    "Endereco": "Avenida Central, 220, São Lourenço",
+    "Latitude": -8.0057,
+    "Longitude": -35.0184,
+    "Telefone": "(81) 5432-1098",
+    "HorarioFuncionamento": "Seg-Sex, 9h - 17h"
+  }
 }

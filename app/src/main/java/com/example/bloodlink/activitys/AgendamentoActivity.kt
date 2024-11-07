@@ -26,7 +26,7 @@ class AgendamentoActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var dataNascimentoTextView: TextView
     private lateinit var motivoDoacaoTextView: TextView
     private lateinit var fotoImageView: ImageView
-    private lateinit var userTipoSanguineo : String
+    private lateinit var userTipoSanguineo: String
 
 
     @SuppressLint("MissingInflatedId")

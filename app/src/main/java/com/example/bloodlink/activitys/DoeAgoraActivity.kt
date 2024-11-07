@@ -152,13 +152,19 @@ class DoeAgoraActivity : AppCompatActivity(), View.OnClickListener {
             reference.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.exists()) {
-                        val tipoSanguineo = snapshot.child("tipoSanguineo").getValue(String::class.java).orEmpty()
-                        val cidadeUf = snapshot.child("cidadeUf").getValue(String::class.java).orEmpty()
-                        val dataNascimento = snapshot.child("dataNascimento").getValue(String::class.java).orEmpty()
-                        val fatorSanguineoRh = snapshot.child("tipoSanguineo").getValue(String::class.java).orEmpty()
-                        val fotoPerfil = snapshot.child("fotoPerfil").getValue(String::class.java).orEmpty()
+                        val tipoSanguineo =
+                            snapshot.child("tipoSanguineo").getValue(String::class.java).orEmpty()
+                        val cidadeUf =
+                            snapshot.child("cidadeUf").getValue(String::class.java).orEmpty()
+                        val dataNascimento =
+                            snapshot.child("dataNascimento").getValue(String::class.java).orEmpty()
+                        val fatorSanguineoRh =
+                            snapshot.child("tipoSanguineo").getValue(String::class.java).orEmpty()
+                        val fotoPerfil =
+                            snapshot.child("fotoPerfil").getValue(String::class.java).orEmpty()
                         val nome = snapshot.child("nome").getValue(String::class.java).orEmpty()
-                        val telefone = snapshot.child("celular").getValue(String::class.java).orEmpty()
+                        val telefone =
+                            snapshot.child("celular").getValue(String::class.java).orEmpty()
 
                         // Exibindo os valores no log para verificação
                         Log.d("DadosUsuario", "Tipo Sanguíneo: $tipoSanguineo")
