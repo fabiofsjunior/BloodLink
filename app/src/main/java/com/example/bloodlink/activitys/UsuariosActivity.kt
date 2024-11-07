@@ -37,7 +37,7 @@ class UsuariosActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var textCidadeUf: TextView
     private lateinit var buttonLogout: Button
     private lateinit var bottomNavigationView: BottomNavigationView
-    private lateinit var tipoSanguineo: String // Variável para armazenar o tipo sanguíneo do Usuário
+    private lateinit var tipoSanguineo: String
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -143,7 +143,7 @@ class UsuariosActivity : AppCompatActivity(), View.OnClickListener {
                         val nome = snapshot.child("nome").getValue(String::class.java)
                         tipoSanguineo =
                             snapshot.child("tipoSanguineo").getValue(String::class.java)
-                                .toString() // Armazena o tipo sanguíneo
+                                .toString()
                         val dataNascimento =
                             snapshot.child("dataNascimento").getValue(String::class.java)
                         val cidadeUf = snapshot.child("cidadeUf").getValue(String::class.java)
@@ -201,7 +201,7 @@ class UsuariosActivity : AppCompatActivity(), View.OnClickListener {
             AgendamentoActivity::class.java -> R.id.nav_donation
             UsuariosActivity::class.java -> R.id.nav_user
             LocalDoacaoActivity::class.java -> R.id.nav_location
-            else -> R.id.nav_home // Um fallback, se necessário
+            else -> R.id.nav_home
         }
     }
 }

@@ -50,7 +50,6 @@ class DoeAgoraActivity : AppCompatActivity(), View.OnClickListener {
             insets
         }
 
-        // Inicializa as TextViews
         nomeTextView = findViewById(R.id.textViewNome)
         fatorSanguineoTextView = findViewById(R.id.textViewFatorSanguineo)
         cidadeUfTextView = findViewById(R.id.textViewCidadeUf)
@@ -65,15 +64,13 @@ class DoeAgoraActivity : AppCompatActivity(), View.OnClickListener {
 
 
 
-        // Recebendo os dados passados
         val receptorNome = intent.getStringExtra("NOME")
         val receptorFatorSanguineo = intent.getStringExtra("TIPO_SANGUINEO")
         val receptorCidadeUf = intent.getStringExtra("CIDADE_UF")
         val receptorDataNascimento = intent.getStringExtra("DATA_NASCIMENTO")
         val receptorMotivoDoacao = intent.getStringExtra("MOTIVO_DOACAO")
-        val receptorFotoUrl = intent.getStringExtra("FOTO_URL") // Se estiver usando imagem
+        val receptorFotoUrl = intent.getStringExtra("FOTO_URL")
 
-        // Exibindo os dados nas TextViews
         nomeTextView.text = receptorNome
         fatorSanguineoTextView.text = receptorFatorSanguineo
         cidadeUfTextView.text = receptorCidadeUf
@@ -122,21 +119,14 @@ class DoeAgoraActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun calcularIdade(dataNascimento: String): String {
         return try {
-            // Definindo o formato da data
             val format = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-            // Convertendo a string para um objeto Date
             val birthDate: Date = format.parse(dataNascimento) ?: return "N/A"
-
-            // Obtendo a data atual
             val currentCalendar = Calendar.getInstance()
-
-            // Calculando a idade
             val birthCalendar = Calendar.getInstance().apply {
                 time = birthDate
             }
             var age = currentCalendar.get(Calendar.YEAR) - birthCalendar.get(Calendar.YEAR)
 
-            // Ajustando a idade caso o aniversário ainda não tenha ocorrido no ano atual
             if (currentCalendar.get(Calendar.MONTH) < birthCalendar.get(Calendar.MONTH) ||
                 (currentCalendar.get(Calendar.MONTH) == birthCalendar.get(Calendar.MONTH) &&
                         currentCalendar.get(Calendar.DAY_OF_MONTH) < birthCalendar.get(Calendar.DAY_OF_MONTH))
