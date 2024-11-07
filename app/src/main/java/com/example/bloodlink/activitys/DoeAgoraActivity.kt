@@ -143,7 +143,6 @@ class DoeAgoraActivity : AppCompatActivity(), View.OnClickListener {
     private fun buscarCompatibilidade(fatorSanguineoUsuario: String) {
         val database = FirebaseDatabase.getInstance().getReference("Receptores")
 
-        // Carregar dados do Firebase
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 receptores.clear()
