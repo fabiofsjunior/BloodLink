@@ -4,6 +4,7 @@ import android.content.Intent
 import android.location.Location
 import android.os.Bundle
 import android.preference.PreferenceManager
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -27,6 +28,8 @@ class LocalDoacaoActivity : AppCompatActivity() {
     private lateinit var database: FirebaseDatabase
     private lateinit var userCityUf: String
 
+    private lateinit var textNomeLocal: TextView
+    private lateinit var textEndereco: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,9 +61,8 @@ class LocalDoacaoActivity : AppCompatActivity() {
             })
         }
 
-
-
-
+        textNomeLocal = findViewById(R.id.textNomeLocal)
+        textEndereco = findViewById(R.id.textEndereco)
 
         bottomNavigationView = findViewById(R.id.bottom_navigation)
 
@@ -105,14 +107,21 @@ class LocalDoacaoActivity : AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 var localMaisProximo: GeoPoint? = null
                 var menorDistancia = Float.MAX_VALUE
+                var nomeMaisProximo = ""
+                var enderecoMaisProximo = ""
 
                 for (localSnapshot in snapshot.children) {
-                    val cidadeUf = localSnapshot.child("Cidade_UF").getValue(String::class.java).orEmpty()
-                    val latitude = localSnapshot.child("Latitude").getValue(Double::class.java) ?: 0.0
-                    val longitude = localSnapshot.child("Longitude").getValue(Double::class.java) ?: 0.0
+                    val nome = localSnapshot.child("Nome").getValue(String::class.java).orEmpty()
+                    val endereco =
+                        localSnapshot.child("Endereco").getValue(String::class.java).orEmpty()
+                    val cidadeUf =
+                        localSnapshot.child("Cidade_UF").getValue(String::class.java).orEmpty()
+                    val latitude =
+                        localSnapshot.child("Latitude").getValue(Double::class.java) ?: 0.0
+                    val longitude =
+                        localSnapshot.child("Longitude").getValue(Double::class.java) ?: 0.0
                     val ponto = GeoPoint(latitude, longitude)
 
-                    // Verifica a proximidade com a cidade do usuário
                     if (cidadeUf == userCityUf) {
                         val resultado = FloatArray(1)
                         Location.distanceBetween(
@@ -125,16 +134,21 @@ class LocalDoacaoActivity : AppCompatActivity() {
                         if (resultado[0] < menorDistancia) {
                             menorDistancia = resultado[0]
                             localMaisProximo = ponto
+                            nomeMaisProximo = nome
+                            enderecoMaisProximo = endereco
                         }
                     }
 
-                    // Adiciona marcador para cada local
                     val marker = Marker(mapView).apply {
                         position = ponto
                         title = cidadeUf
-                        setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
+                        setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_CENTER)
                         icon = resources.getDrawable(R.drawable.marker_icon, null)
-
+                        setOnMarkerClickListener { marker, _ ->
+                            mapView.controller.setZoom(mapView.zoomLevelDouble)
+                            mapView.invalidate()
+                            true
+                        }
                     }
                     mapView.overlays.add(marker)
                 }
@@ -142,11 +156,15 @@ class LocalDoacaoActivity : AppCompatActivity() {
                 if (localMaisProximo != null) {
                     mapView.controller.apply {
                         animateTo(localMaisProximo)
-                        setZoom(21.0)
+                        setZoom(20.0)
                     }
+
+                    textNomeLocal.text = "$nomeMaisProximo"
+                    textEndereco.text = "$enderecoMaisProximo"
+
                     Toast.makeText(
                         this@LocalDoacaoActivity,
-                        "Local mais próximo: ${userCityUf}",
+                        "Local mais próximo: $userCityUf",
                         Toast.LENGTH_SHORT
                     ).show()
                 } else {
@@ -156,6 +174,8 @@ class LocalDoacaoActivity : AppCompatActivity() {
                         Toast.LENGTH_SHORT
                     ).show()
                 }
+                mapView.invalidate()
+
             }
 
             override fun onCancelled(error: DatabaseError) {

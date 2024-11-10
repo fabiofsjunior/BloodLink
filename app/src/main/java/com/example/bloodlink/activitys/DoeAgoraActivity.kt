@@ -93,8 +93,6 @@ class DoeAgoraActivity : AppCompatActivity(), View.OnClickListener {
 
         carregarTipoSangueUsuario()
 
-//        buscarCompatibilidade(userTipoSanguineo)
-
     }
 
     override fun onClick(view: View) {

@@ -36,32 +36,22 @@
             android:background="@android:color/darker_gray" />
 
         <TextView
-            android:id="@+id/textNomeUsuario"
+            android:id="@+id/textNomeLocal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#FFF4EA"
             android:fontFamily="@font/lilita_one"
             android:text="Nome do Local"
-            android:textColor="@color/black"
+            android:textColor="@color/red"
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/textDataNascimento"
+            android:id="@+id/textEndereco"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#FFF4EA"
             android:fontFamily="@font/lilita_one"
             android:text="Endereço do Local"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/textCidadeUf"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#FFF4EA"
-            android:fontFamily="@font/lilita_one"
-            android:text="Cidade: Cidade-UF"
             android:textColor="@color/black"
             android:textSize="20sp" />
 
