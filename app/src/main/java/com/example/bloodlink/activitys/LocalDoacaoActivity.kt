@@ -107,12 +107,9 @@ class LocalDoacaoActivity : AppCompatActivity() {
                 var menorDistancia = Float.MAX_VALUE
 
                 for (localSnapshot in snapshot.children) {
-                    val cidadeUf =
-                        localSnapshot.child("Cidade_UF").getValue(String::class.java).orEmpty()
-                    val latitude =
-                        localSnapshot.child("Latitude").getValue(Double::class.java) ?: 0.0
-                    val longitude =
-                        localSnapshot.child("Longitude").getValue(Double::class.java) ?: 0.0
+                    val cidadeUf = localSnapshot.child("Cidade_UF").getValue(String::class.java).orEmpty()
+                    val latitude = localSnapshot.child("Latitude").getValue(Double::class.java) ?: 0.0
+                    val longitude = localSnapshot.child("Longitude").getValue(Double::class.java) ?: 0.0
                     val ponto = GeoPoint(latitude, longitude)
 
                     // Verifica a proximidade com a cidade do usuário
@@ -121,8 +118,8 @@ class LocalDoacaoActivity : AppCompatActivity() {
                         Location.distanceBetween(
                             latitude,
                             longitude,
-                            ponto.latitude,
-                            ponto.longitude,
+                            latitude,
+                            longitude,
                             resultado
                         )
                         if (resultado[0] < menorDistancia) {
@@ -132,16 +129,21 @@ class LocalDoacaoActivity : AppCompatActivity() {
                     }
 
                     // Adiciona marcador para cada local
-                    val marker = Marker(mapView)
-                    marker.position = ponto
-                    marker.title = cidadeUf
+                    val marker = Marker(mapView).apply {
+                        position = ponto
+                        title = cidadeUf
+                        setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
+                        icon = resources.getDrawable(R.drawable.marker_icon, null)
+
+                    }
                     mapView.overlays.add(marker)
                 }
 
-                // Centraliza o mapa no local mais próximo, se encontrado
                 if (localMaisProximo != null) {
-                    mapView.controller.setCenter(localMaisProximo)
-                    mapView.controller.setZoom(15.0)
+                    mapView.controller.apply {
+                        animateTo(localMaisProximo)
+                        setZoom(21.0)
+                    }
                     Toast.makeText(
                         this@LocalDoacaoActivity,
                         "Local mais próximo: ${userCityUf}",
@@ -164,8 +166,8 @@ class LocalDoacaoActivity : AppCompatActivity() {
                 ).show()
             }
         })
-
     }
+
 
     override fun onResume() {
         super.onResume()
