@@ -11,12 +11,13 @@ O **BloodLink** é um aplicativo desenvolvido com o objetivo de conectar doadore
 **Tela Principal:**  
 A tela principal gerencia a navegação entre as demais telas do aplicativo.
 
-- **Tela 1:** Login (Autenticação) – **Fábio Jr.**  
-- **Tela 2:** Cadastro de Usuário (Firebase + Banco de Dados) – **Joana Karina**  
+- **Tela 1:** Login (Firebase Auth) – **Fábio Jr.**  
+- **Tela 2:** Cadastro de Usuário (Firebase + Realtime Database) – **Joana Karina**  
 - **Tela 3:** Dados do Usuário ("Carteirinha de Doador") – **Anderson S.**  
-- **Tela 4:** Listagem de Receptores (Card com a quantidade de doações faltantes) – **Edécio**  
-- **Tela 5:** Confirmação de Doação – **Mannu G.**  
-- **Tela 6:** Local da Doação – **Fábio Jr.**
+- **Tela 4:** Listagem de Receptores (Card com as informações RecycleView, Adapter) – **Edécio**  
+- **Tela 5:** Confirmação de Doação – (View Match Doador x Receptor) **Mannu G.**  
+- **Tela 6:** Local da Doação – (Geolocalização OSMDROID) **Fábio Jr.**
+- **Extra** Menu de Navegação – (Fragment) **Fábio Jr.**  
 
 ---
 
@@ -33,17 +34,22 @@ A tela principal gerencia a navegação entre as demais telas do aplicativo.
 
 As funcionalidades principais do app incluem:
 
-- **GET:**  
   - Exibir a lista de receptores de doação.
   - Exibir o local de doação.
   - Exibir os dados do usuário.
-
-- **POST:**  
   - Cadastro de usuários.
   - Confirmação de agendamento de doação.
 
-- **(Opcional) UPDATE:**  
-  - Atualizar dados do usuário.
+Possíveis implementações futuras:
+  - Sistema de Notificações Push
+  - Histórico de Doações
+  - Avaliação do Processo de Doação
+  - Autenticação Multicanal (2FA)
+  - Funcionalidades Sociais e Gamificação
+  - Chat ou Suporte em Tempo Real
+  - Parcerias com Empresas
+  - etc.
+
 
 ---
 
@@ -62,6 +68,8 @@ O design foi pensado para ser intuitivo e fácil de usar, com foco na acessibili
 - O app está disponível para download no seguinte [link](https://drive.google.com/file/d/1LWHin0oUIaeGcMZFgOnDRBAetyWQiahi/view?usp=drive_link)
 - O código-fonte está hospedado no GitHub:  
   [GitHub - BloodLinkApp](https://github.com/fabiofsjunior/BloodLink)
+  - Google DriveO: [link](https://drive.google.com/drive/folders/134gAW4srjj0qN-Q5vRrXISbRZnTpZhFk?usp=drive_link)
+
 
 ---
 
