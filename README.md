@@ -25,8 +25,9 @@ A tela principal gerencia a navegação entre as demais telas do aplicativo.
 
 - **Modelagem do Banco de Dados:** Desenvolvida por **Joana Karina**  
 - **Documento de Requisitos:** Criado por **Fábio Jr.**  
-- **Documento do Projeto:** Inclui o Roteiro de Extensão e a Carta de Apresentação.  
-- **Banner do Projeto:** [Link](#)
+- **Documento do Projeto:** Inclui o Roteiro de Extensão e a Carta de Apresentação.
+- **Google DriveO:** [link](https://drive.google.com/drive/folders/134gAW4srjj0qN-Q5vRrXISbRZnTpZhFk?usp=drive_link)
+
 
 ---
 
@@ -68,8 +69,6 @@ O design foi pensado para ser intuitivo e fácil de usar, com foco na acessibili
 - O app está disponível para download no seguinte [link](https://drive.google.com/file/d/1LWHin0oUIaeGcMZFgOnDRBAetyWQiahi/view?usp=drive_link)
 - O código-fonte está hospedado no GitHub:  
   [GitHub - BloodLinkApp](https://github.com/fabiofsjunior/BloodLink)
-  - Google DriveO: [link](https://drive.google.com/drive/folders/134gAW4srjj0qN-Q5vRrXISbRZnTpZhFk?usp=drive_link)
-
 
 ---
 
