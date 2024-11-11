@@ -4,7 +4,7 @@
 **Descrição:**  
 O **BloodLink** é um aplicativo desenvolvido com o objetivo de conectar doadores e receptores de sangue de maneira simples e eficiente. Ele permite que os usuários se cadastrem, vejam informações sobre doações e locais, e confirmem suas doações, promovendo uma rede de solidariedade vital.
 
-[BloodLinkApp Download APK]([https://github.com/fabiofsjunior/BloodLink/releases/download/BloodLinkApk/BloodLinkApp.apk)
+[BloodLinkApp](https://github.com/fabiofsjunior/BloodLink/releases/download/BloodLinkApk/BloodLinkApp.apk])
 
 ---
 
@@ -68,7 +68,7 @@ O design foi pensado para ser intuitivo e fácil de usar, com foco na acessibili
 
 ### **5. Build/Deploy**
 
-- O app está disponível para download no seguinte [BloodLinkApp](https://drive.google.com/file/d/1LWHin0oUIaeGcMZFgOnDRBAetyWQiahi/view?usp=drive_link)
+- O app está disponível para download no seguinte [BloodLinkApp](https://github.com/fabiofsjunior/BloodLink/releases/download/BloodLinkApk/BloodLinkApp.apk])
 - O código-fonte está hospedado no GitHub:  
   [GitHub - BloodLinkApp](https://github.com/fabiofsjunior/BloodLink)
 
