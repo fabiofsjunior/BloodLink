@@ -2,9 +2,9 @@
 # **BloodLink App**
 
 **Descrição:**  
-O **BloodLink** é um aplicativo desenvolvido com o objetivo de conectar doadores e receptores de sangue de maneira simples e eficiente. Ele permite que os usuários se cadastrem, vejam informações sobre doações e locais, e confirmem suas doações, promovendo uma rede de solidariedade vital! [BloodLinkApp](https://github.com/fabiofsjunior/BloodLink/releases/download/BloodLinkApk/BloodLinkApp.apk])
+O **BloodLink** é um aplicativo desenvolvido com o objetivo de conectar doadores e receptores de sangue de maneira simples e eficiente. Ele permite que os usuários se cadastrem, vejam informações sobre doações e locais, e confirmem suas doações, promovendo uma rede de solidariedade vital!
 
-https://github.com/user-attachments/assets/42f4749f-0f46-49de-a41f-4fa6b4f31f80
+![BloodLink Prints](https://github.com/user-attachments/assets/0903c45f-4620-4944-9d6f-b94d03ed1568)
 
 https://github.com/user-attachments/assets/b33d7eb4-5282-4eea-82bf-6366143496be
 
